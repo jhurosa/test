@@ -3,1148 +3,771 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin — Portfolio CMS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Admin CMS — Juliana Rosa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --c-bg: #f4f4f5;
-      --c-white: #ffffff;
-      --c-ink: #1a1a1a;
-      --c-body: #444;
-      --c-muted: #888;
-      --c-border: #e4e4e7;
-      --c-accent: #1A5780;
-      --c-accent-light: #e8f0f6;
-      --c-danger: #dc2626;
-      --c-success: #16a34a;
-      --font: 'Montserrat', sans-serif;
-      --sidebar: 240px;
-      --radius: 10px;
-    }
-
-    body { font-family: var(--font); background: var(--c-bg); color: var(--c-ink); font-size: 0.9rem; }
+    :root { --bg: #f5f5f5; --white: #ffffff; --text: #1a1a1a; --text2: #555; --text3: #888; --border: #e5e5e5; --accent: #1a1a1a; --sidebar: 220px; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; -webkit-font-smoothing: antialiased; }
 
     /* LOGIN */
-    #login-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--c-bg);
-    }
-
-    .login-box {
-      background: var(--c-white);
-      border: 1px solid var(--c-border);
-      border-radius: 16px;
-      padding: 48px;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    }
-
-    .login-logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--c-ink);
-      margin-bottom: 8px;
-    }
-
-    .login-logo span { color: var(--c-accent); }
-
-    .login-sub { font-size: 0.82rem; color: var(--c-muted); margin-bottom: 32px; }
-
-    .login-error {
-      display: none;
-      background: #fef2f2;
-      border: 1px solid #fca5a5;
-      color: var(--c-danger);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      margin-bottom: 16px;
-    }
+    #login { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .login-box { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; width: 340px; }
+    .login-logo { font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+    .login-sub { font-size: 11px; color: var(--text3); margin-bottom: 2rem; }
+    .login-err { display: none; font-size: 11px; color: #c62828; background: #fef2f2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; }
 
     /* APP */
     #app { display: none; height: 100vh; overflow: hidden; }
-
-    .app-layout {
-      display: grid;
-      grid-template-columns: var(--sidebar) 1fr;
-      height: 100vh;
-    }
+    .layout { display: grid; grid-template-columns: var(--sidebar) 1fr; height: 100vh; }
 
     /* SIDEBAR */
-    .sidebar {
-      background: var(--c-ink);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .sidebar-header {
-      padding: 24px 20px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .sidebar-logo {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .sidebar-logo span { color: #60a5fa; }
-
-    .sidebar-sub { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
-
-    .sidebar-nav { padding: 16px 12px; flex: 1; }
-
-    .nav-section-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      padding: 12px 8px 6px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      color: rgba(255,255,255,0.65);
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: all 0.15s;
-      user-select: none;
-    }
-
-    .nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
-    .nav-item.active { background: var(--c-accent); color: #fff; }
-
-    .sidebar-footer {
-      padding: 16px 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      gap: 8px;
-    }
-
-    .sidebar-footer a {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.4);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .sidebar-footer a:hover { color: rgba(255,255,255,0.8); }
+    .sidebar { background: var(--text); color: #fff; display: flex; flex-direction: column; overflow-y: auto; }
+    .sb-header { padding: 1.25rem 1rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sb-logo { font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    .sb-sub { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .sb-nav { padding: 1rem 0.75rem; flex: 1; }
+    .sb-group { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 12px 8px 6px; }
+    .sb-item { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 7px; cursor: pointer; color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 500; transition: all 0.15s; user-select: none; }
+    .sb-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .sb-item.active { background: rgba(255,255,255,0.15); color: #fff; }
+    .sb-footer { padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .sb-footer a { font-size: 11px; color: rgba(255,255,255,0.35); text-decoration: none; cursor: pointer; }
+    .sb-footer a:hover { color: rgba(255,255,255,0.7); }
 
     /* MAIN */
-    .main { overflow-y: auto; display: flex; flex-direction: column; }
-
-    .topbar {
-      background: var(--c-white);
-      border-bottom: 1px solid var(--c-border);
-      padding: 0 32px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      flex-shrink: 0;
-    }
-
-    .topbar-title { font-size: 0.95rem; font-weight: 700; color: var(--c-ink); }
-
-    .topbar-actions { display: flex; gap: 10px; align-items: center; }
-
-    .content { padding: 32px; flex: 1; }
+    .main { overflow-y: auto; display: flex; flex-direction: column; background: var(--bg); }
+    .topbar { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; flex-shrink: 0; }
+    .topbar-title { font-size: 13px; font-weight: 600; }
+    .topbar-actions { display: flex; gap: 8px; }
+    .content { padding: 1.5rem 2rem; flex: 1; }
 
     /* CARDS */
-    .card {
-      background: var(--c-white);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 20px;
-    }
-
-    .card-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--c-border);
-    }
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; }
+    .card-title { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--text); padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
 
     /* FORMS */
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
-    .form-group { display: flex; flex-direction: column; gap: 5px; }
-    .form-group.full { grid-column: 1 / -1; }
-
-    label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--c-body);
-      letter-spacing: 0.03em;
+    .fg { display: flex; flex-direction: column; gap: 4px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .full { grid-column: 1 / -1; }
+    label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; color: var(--text3); }
+    input[type=text], input[type=email], input[type=url], input[type=password], textarea, select {
+      font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text);
+      background: var(--bg); border: 1px solid var(--border); border-radius: 7px;
+      padding: 9px 12px; transition: border-color 0.2s; width: 100%;
     }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    input[type="password"],
-    textarea,
-    select {
-      font-family: var(--font);
-      font-size: 0.875rem;
-      color: var(--c-ink);
-      background: var(--c-bg);
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: var(--c-accent);
-      background: #fff;
-    }
-
-    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
-
-    .input-hint {
-      font-size: 0.72rem;
-      color: var(--c-muted);
-      margin-top: 2px;
-    }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--text); background: var(--white); }
+    textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+    .hint { font-size: 10px; color: var(--text3); margin-top: 2px; }
 
     /* TOGGLE */
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--c-border);
-    }
-
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
     .toggle-row:last-child { border-bottom: none; }
-
-    .toggle-label { font-size: 0.85rem; font-weight: 500; }
-
-    .toggle {
-      position: relative;
-      width: 42px;
-      height: 24px;
-    }
-
-    .toggle input { opacity: 0; width: 0; height: 0; }
-
-    .toggle-slider {
-      position: absolute;
-      inset: 0;
-      background: var(--c-border);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .toggle-slider::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border-radius: 50%;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.2s;
-    }
-
-    .toggle input:checked + .toggle-slider { background: var(--c-accent); }
-    .toggle input:checked + .toggle-slider::after { transform: translateX(18px); }
+    .tgl-label { font-size: 12px; font-weight: 500; }
+    .tgl { position: relative; width: 38px; height: 22px; }
+    .tgl input { opacity: 0; width: 0; height: 0; }
+    .tgl-s { position: absolute; inset: 0; background: var(--border); border-radius: 11px; cursor: pointer; transition: background 0.2s; }
+    .tgl-s::after { content: ''; position: absolute; width: 16px; height: 16px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
+    .tgl input:checked + .tgl-s { background: var(--text); }
+    .tgl input:checked + .tgl-s::after { transform: translateX(16px); }
 
     /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .btn-primary { background: var(--c-accent); color: #fff; }
-    .btn-primary:hover { background: #154668; }
-
-    .btn-success { background: var(--c-success); color: #fff; }
-    .btn-success:hover { background: #15803d; }
-
-    .btn-danger { background: var(--c-danger); color: #fff; }
-    .btn-danger:hover { background: #b91c1c; }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--c-body);
-      border: 1.5px solid var(--c-border);
-    }
-
-    .btn-outline:hover { border-color: var(--c-ink); color: var(--c-ink); }
-
-    .btn-sm { padding: 7px 14px; font-size: 0.78rem; }
+    .btn { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 18px; border-radius: 20px; cursor: pointer; border: none; transition: opacity 0.2s; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+    .btn:hover { opacity: 0.8; }
+    .btn-dark { background: var(--text); color: #fff; }
+    .btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+    .btn-danger { background: #dc2626; color: #fff; }
+    .btn-success { background: #166534; color: #fff; }
+    .btn-sm { padding: 6px 12px; font-size: 9px; }
 
     /* PROJECT LIST */
-    .project-list { display: flex; flex-direction: column; gap: 12px; }
-
-    .project-item {
-      background: var(--c-white);
-      border: 1.5px solid var(--c-border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .project-item:hover { border-color: var(--c-accent); }
-    .project-item.selected { border-color: var(--c-accent); background: var(--c-accent-light); }
-
-    .project-item-thumb {
-      width: 56px;
-      height: 40px;
-      border-radius: 6px;
-      object-fit: cover;
-      background: #e0e7ef;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      overflow: hidden;
-    }
-
-    .project-item-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-    .project-item-info { flex: 1; }
-
-    .project-item-title { font-size: 0.88rem; font-weight: 700; color: var(--c-ink); }
-
-    .project-item-meta { font-size: 0.75rem; color: var(--c-muted); margin-top: 2px; }
-
-    .project-item-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
-
-    .badge {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
-
-    .badge-published { background: #dcfce7; color: #166534; }
+    .proj-list { display: flex; flex-direction: column; gap: 10px; }
+    .proj-item { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: border-color 0.15s; }
+    .proj-item:hover { border-color: var(--text); }
+    .proj-thumb { width: 52px; height: 38px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; overflow: hidden; }
+    .proj-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .proj-info { flex: 1; }
+    .proj-title { font-size: 12px; font-weight: 600; }
+    .proj-meta { font-size: 10px; color: var(--text3); margin-top: 2px; }
+    .badge { font-size: 9px; font-weight: 600; letter-spacing: 0.5px; padding: 2px 7px; border-radius: 4px; margin-right: 4px; margin-top: 4px; display: inline-block; }
+    .badge-pub { background: #dcfce7; color: #166534; }
     .badge-draft { background: #f3f4f6; color: #6b7280; }
     .badge-nda { background: #fff8e1; color: #7c5f00; }
+    .proj-actions { display: flex; gap: 6px; }
 
-    .project-item-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    /* SECTION BLOCKS */
+    .sec-block { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+    .sec-header { padding: 12px 16px; background: var(--bg); display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+    .sec-header:hover { background: #ececec; }
+    .sec-header-title { font-size: 12px; font-weight: 600; flex: 1; }
+    .sec-body { padding: 16px; display: none; }
+    .sec-body.open { display: block; }
 
-    /* SECTION EDITOR */
-    .section-block {
-      border: 1.5px solid var(--c-border);
-      border-radius: var(--radius);
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .section-header {
-      padding: 14px 20px;
-      background: var(--c-bg);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .section-header:hover { background: #ececec; }
-
-    .section-header-title { font-size: 0.85rem; font-weight: 700; flex: 1; }
-
-    .section-body { padding: 20px; display: none; }
-    .section-body.open { display: block; }
-
-    /* METRICS EDITOR */
-    .metric-row {
-      display: grid;
-      grid-template-columns: 1fr 2fr auto;
-      gap: 10px;
-      align-items: end;
-      margin-bottom: 10px;
-    }
-
-    /* GALLERY EDITOR */
-    .gallery-row {
-      display: grid;
-      grid-template-columns: 2fr 2fr auto;
-      gap: 10px;
-      align-items: end;
-      margin-bottom: 10px;
-    }
+    /* INLINE ROWS */
+    .row3 { display: grid; grid-template-columns: 1fr 2fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+    .row-img { display: grid; grid-template-columns: 2fr 2fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
 
     /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--c-ink);
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.3s;
-    }
-
+    .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text); color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 11px; font-weight: 500; z-index: 9999; transform: translateY(60px); opacity: 0; transition: all 0.3s; }
     .toast.show { transform: translateY(0); opacity: 1; }
-    .toast.success { background: var(--c-success); }
-    .toast.error { background: var(--c-danger); }
+    .toast.ok { background: #166534; }
+    .toast.err { background: #dc2626; }
 
-    /* UTILITY */
-    .divider { border: none; border-top: 1px solid var(--c-border); margin: 20px 0; }
-    .text-muted { color: var(--c-muted); font-size: 0.82rem; }
-    .mt-2 { margin-top: 8px; }
-    .mt-3 { margin-top: 16px; }
-    .mt-4 { margin-top: 24px; }
-    .flex { display: flex; align-items: center; gap: 12px; }
-    .flex-between { display: flex; align-items: center; justify-content: space-between; }
-    .gap-2 { gap: 8px; }
-
-    /* PASSWORD HASH HELPER */
-    .hash-result {
-      font-family: monospace;
-      font-size: 0.75rem;
-      background: #f4f4f5;
-      border: 1px solid var(--c-border);
-      border-radius: 6px;
-      padding: 8px 12px;
-      word-break: break-all;
-      color: var(--c-body);
-      margin-top: 8px;
-      display: none;
-    }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+    .flex { display: flex; align-items: center; gap: 10px; }
+    .text-muted { font-size: 11px; color: var(--text3); }
+    .mt-1 { margin-top: 6px; } .mt-2 { margin-top: 12px; } .mt-3 { margin-top: 20px; }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN -->
-  <div id="login-screen">
-    <div class="login-box">
-      <div class="login-logo">Juli<span>.</span></div>
-      <div class="login-sub">Portfolio Admin CMS</div>
-      <div class="login-error" id="login-error">Incorrect password.</div>
-      <div class="form-group" style="margin-bottom:12px">
-        <label for="login-pw">Password</label>
-        <input type="password" id="login-pw" placeholder="Enter admin password" autocomplete="current-password" />
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <div class="login-logo">JR</div>
+    <div class="login-sub">Portfolio Admin</div>
+    <div class="login-err" id="login-err">Incorrect password.</div>
+    <div class="fg" style="margin-bottom:10px">
+      <label for="lpw">Password</label>
+      <input type="password" id="lpw" placeholder="Enter password" autocomplete="current-password" />
+    </div>
+    <button class="btn btn-dark" style="width:100%;justify-content:center" onclick="doLogin()">Sign in</button>
+    <div style="margin-top:1rem;font-size:10px;color:var(--text3);text-align:center">Default: <code>jrosaux2026</code></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sb-header"><div class="sb-logo">JR</div><div class="sb-sub">Portfolio CMS</div></div>
+      <nav class="sb-nav">
+        <div class="sb-group">Content</div>
+        <div class="sb-item active" id="nav-projects" onclick="showTab('projects')">📁 Projects</div>
+        <div class="sb-item" id="nav-hero" onclick="showTab('hero')">🏠 Hero & Site</div>
+        <div class="sb-item" id="nav-about" onclick="showTab('about')">👤 About page</div>
+        <div class="sb-item" id="nav-contact" onclick="showTab('contact')">✉️ Contact page</div>
+        <div class="sb-item" id="nav-nda" onclick="showTab('nda')">🔒 NDA Password</div>
+        <div class="sb-group">Actions</div>
+        <div class="sb-item" onclick="downloadData()">⬇️ Download data.js</div>
+        <div class="sb-item" onclick="window.open('index.html','_blank')">🌐 Preview site</div>
+      </nav>
+      <div class="sb-footer"><a onclick="doLogout()">Sign out</a></div>
+    </aside>
+
+    <main class="main">
+
+      <!-- PROJECTS TAB -->
+      <div id="tab-projects">
+        <div class="topbar">
+          <span class="topbar-title" id="proj-topbar">Projects</span>
+          <div class="topbar-actions">
+            <button class="btn btn-outline btn-sm" onclick="showProjList()">← All</button>
+            <button class="btn btn-dark btn-sm" onclick="addProject()">+ New project</button>
+          </div>
+        </div>
+        <div class="content">
+          <div id="proj-list-view">
+            <div class="flex" style="margin-bottom:1rem;justify-content:space-between">
+              <div><div style="font-size:13px;font-weight:600">All Projects</div><div class="text-muted" id="proj-count">0 projects</div></div>
+            </div>
+            <div class="proj-list" id="proj-list"></div>
+            <div id="proj-empty" style="display:none;text-align:center;padding:4rem;color:var(--text3)">
+              <div style="font-size:2rem;margin-bottom:10px">✦</div>
+              <div style="font-weight:600;margin-bottom:8px">No projects yet</div>
+              <button class="btn btn-dark" onclick="addProject()">+ Add first project</button>
+            </div>
+          </div>
+          <div id="proj-editor-view" style="display:none"><div id="proj-editor"></div></div>
+        </div>
       </div>
-      <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Sign in</button>
-    </div>
+
+      <!-- HERO TAB -->
+      <div id="tab-hero" style="display:none">
+        <div class="topbar"><span class="topbar-title">Hero & Site</span><div class="topbar-actions"><button class="btn btn-success btn-sm" onclick="saveHero()">Save</button></div></div>
+        <div class="content">
+          <div class="card">
+            <div class="card-title">Hero Section</div>
+            <div class="grid2">
+              <div class="fg"><label>Tagline (tag line above headline)</label><input type="text" id="h-tag" /></div>
+              <div class="fg"><label>Hero image URL</label><input type="url" id="h-image" /></div>
+              <div class="fg"><label>Headline (first line)</label><input type="text" id="h-headline" /></div>
+              <div class="fg"><label>Headline strong (second line)</label><input type="text" id="h-headlineStrong" /></div>
+              <div class="fg full"><label>Subtitle</label><textarea id="h-subtitle" rows="2"></textarea></div>
+              <div class="fg"><label>CTA Primary text</label><input type="text" id="h-cta1text" /></div>
+              <div class="fg"><label>CTA Primary URL</label><input type="text" id="h-cta1url" /></div>
+              <div class="fg"><label>CTA Secondary text</label><input type="text" id="h-cta2text" /></div>
+              <div class="fg"><label>CTA Secondary URL</label><input type="text" id="h-cta2url" /></div>
+            </div>
+            <hr class="divider" />
+            <div style="font-size:11px;font-weight:600;margin-bottom:10px">Stats (max 4)</div>
+            <div id="hero-stats-list"></div>
+            <button class="btn btn-outline btn-sm mt-1" onclick="addHeroStat()">+ Add stat</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Navigation & Footer</div>
+            <div class="grid2">
+              <div class="fg"><label>Logo text</label><input type="text" id="nav-logo-txt" /></div>
+              <div class="fg"><label>Footer copyright</label><input type="text" id="footer-copy" /></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">NDA Banner (on homepage)</div>
+            <div class="toggle-row"><span class="tgl-label">Show NDA banner</span><label class="tgl"><input type="checkbox" id="nda-banner-enabled" /><span class="tgl-s"></span></label></div>
+            <div class="grid2 mt-2">
+              <div class="fg"><label>Banner text</label><input type="text" id="nda-banner-text" /></div>
+              <div class="fg"><label>Link text</label><input type="text" id="nda-banner-linktext" /></div>
+              <div class="fg"><label>Link URL</label><input type="text" id="nda-banner-linkurl" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT TAB -->
+      <div id="tab-about" style="display:none">
+        <div class="topbar"><span class="topbar-title">About Page</span><div class="topbar-actions"><button class="btn btn-success btn-sm" onclick="saveAbout()">Save</button></div></div>
+        <div class="content">
+          <div class="card">
+            <div class="card-title">About Content</div>
+            <div class="grid2">
+              <div class="fg"><label>Tag (small label)</label><input type="text" id="a-tag" /></div>
+              <div class="fg"><label>Photo URL</label><input type="url" id="a-image" /></div>
+              <div class="fg"><label>Headline</label><input type="text" id="a-headline" /></div>
+              <div class="fg"><label>Headline strong</label><input type="text" id="a-headlineStrong" /></div>
+              <div class="fg full"><label>Bio paragraph 1</label><textarea id="a-bio1"></textarea></div>
+              <div class="fg full"><label>Bio paragraph 2</label><textarea id="a-bio2"></textarea></div>
+              <div class="fg"><label>CTA button text</label><input type="text" id="a-ctaText" /></div>
+              <div class="fg"><label>CTA button URL</label><input type="text" id="a-ctaUrl" /></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Skills</div>
+            <div id="skills-list"></div>
+            <button class="btn btn-outline btn-sm mt-1" onclick="addSkill()">+ Add skill category</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Experience</div>
+            <div id="exp-list"></div>
+            <button class="btn btn-outline btn-sm mt-1" onclick="addExp()">+ Add experience</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT TAB -->
+      <div id="tab-contact" style="display:none">
+        <div class="topbar"><span class="topbar-title">Contact Page</span><div class="topbar-actions"><button class="btn btn-success btn-sm" onclick="saveContact()">Save</button></div></div>
+        <div class="content">
+          <div class="card">
+            <div class="card-title">Contact Content</div>
+            <div class="grid2">
+              <div class="fg"><label>Tag</label><input type="text" id="c-tag" /></div>
+              <div class="fg"><label>Headline</label><input type="text" id="c-headline" /></div>
+              <div class="fg"><label>Headline strong</label><input type="text" id="c-headlineStrong" /></div>
+              <div class="fg full"><label>Subtitle</label><textarea id="c-subtitle" rows="2"></textarea></div>
+              <div class="fg"><label>Email</label><input type="email" id="c-email" /></div>
+              <div class="fg"><label>LinkedIn URL</label><input type="url" id="c-linkedin" /></div>
+              <div class="fg"><label>Formspree ID</label><input type="text" id="c-formspree" placeholder="8 character ID" /><div class="hint">From your Formspree form URL</div></div>
+              <div class="fg"><label>Availability badge text</label><input type="text" id="c-availability" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NDA TAB -->
+      <div id="tab-nda" style="display:none">
+        <div class="topbar"><span class="topbar-title">NDA Password</span></div>
+        <div class="content">
+          <div class="card">
+            <div class="card-title">Set NDA Password</div>
+            <p class="text-muted" style="margin-bottom:1rem">Visitors need this password to view locked projects. The plain text is never saved — only the SHA-256 hash.</p>
+            <div class="grid2">
+              <div class="fg">
+                <label>New password (plain text)</label>
+                <input type="text" id="nda-plain" placeholder="e.g. portfolio2026" />
+                <div class="hint">Type a password then click Generate Hash</div>
+              </div>
+              <div class="fg">
+                <label>Stored hash (auto-filled after generate)</label>
+                <input type="text" id="nda-hash-display" placeholder="Hash will appear here" readonly />
+              </div>
+            </div>
+            <div class="flex mt-2">
+              <button class="btn btn-dark btn-sm" onclick="genNdaHash()">Generate Hash</button>
+              <button class="btn btn-success btn-sm" onclick="saveNdaHash()">Save to data</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Admin Password</div>
+            <p class="text-muted" style="margin-bottom:1rem">Current admin password: <strong>jrosaux2026</strong>. To change it, generate a new hash and replace <code>ADMIN_HASH</code> in admin.html.</p>
+            <div class="grid2">
+              <div class="fg"><label>New password</label><input type="text" id="admin-plain" placeholder="New password" /></div>
+              <div class="fg"><label>New hash (copy to admin.html)</label><input type="text" id="admin-hash-out" readonly placeholder="Hash appears here" /></div>
+            </div>
+            <button class="btn btn-outline btn-sm mt-2" onclick="genAdminHash()">Generate admin hash</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
+</div>
 
-  <!-- APP -->
-  <div id="app">
-    <div class="app-layout">
+<div class="toast" id="toast"></div>
 
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-logo">Juli<span>.</span></div>
-          <div class="sidebar-sub">Portfolio CMS</div>
+<script src="data.js"></script>
+<script>
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+// Default password: jrosaux2026
+// To change: generate new SHA-256 hash and replace ADMIN_HASH below
+const ADMIN_HASH = 'PLACEHOLDER_HASH';
+// ^ We'll check against both the hash and the default password directly
+
+async function sha256(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function doLogin() {
+  const pw = document.getElementById('lpw').value;
+  const hash = await sha256(pw);
+  const ok = pw === 'jrosaux2026' || hash === ADMIN_HASH;
+  if (ok) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    initApp();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+document.getElementById('lpw').addEventListener('keypress', e => { if (e.key === 'Enter') doLogin(); });
+function doLogout() { document.getElementById('login').style.display = 'flex'; document.getElementById('app').style.display = 'none'; document.getElementById('lpw').value = ''; }
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+let state;
+const saved = localStorage.getItem('jrAdminData');
+if (saved) { try { state = JSON.parse(saved); } catch(e) { state = JSON.parse(JSON.stringify(portfolioData)); } }
+else { state = JSON.parse(JSON.stringify(portfolioData)); }
+
+function save() { localStorage.setItem('jrAdminData', JSON.stringify(state)); }
+
+function initApp() {
+  renderProjList();
+  loadHero();
+  loadAbout();
+  loadContact();
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function showTab(t) {
+  ['projects','hero','about','contact','nda'].forEach(k => {
+    document.getElementById(`tab-${k}`).style.display = k === t ? 'block' : 'none';
+    document.getElementById(`nav-${k}`).classList.toggle('active', k === t);
+  });
+  if (t === 'projects') renderProjList();
+}
+
+// ── PROJECT LIST ───────────────────────────────────────────────────────────────
+let allProjects = () => [
+  ...(state.industrySection.projects || []),
+  ...(state.academicSection.projects || [])
+];
+
+function renderProjList() {
+  const all = allProjects();
+  document.getElementById('proj-count').textContent = `${all.length} projects`;
+  const list = document.getElementById('proj-list');
+  if (all.length === 0) { list.innerHTML = ''; document.getElementById('proj-empty').style.display = 'block'; return; }
+  document.getElementById('proj-empty').style.display = 'none';
+  list.innerHTML = all.map((p, i) => {
+    const page = (state.projectPages || {})[p.id] || {};
+    return `<div class="proj-item" onclick="editProject('${p.id}')">
+      <div class="proj-thumb">${p.image ? `<img src="${p.image}" />` : '✦'}</div>
+      <div class="proj-info">
+        <div class="proj-title">${p.title}</div>
+        <div class="proj-meta">${p.date}</div>
+        <div>
+          <span class="badge ${!p.locked ? 'badge-pub' : 'badge-draft'}">${!p.locked ? 'Public' : 'Locked'}</span>
+          ${p.locked ? '<span class="badge badge-nda">🔒 NDA</span>' : ''}
         </div>
-        <nav class="sidebar-nav">
-          <div class="nav-section-label">Content</div>
-          <div class="nav-item active" onclick="showTab('projects')" id="nav-projects">📁 Projects</div>
-          <div class="nav-item" onclick="showTab('site')" id="nav-site">⚙️ Site Settings</div>
-          <div class="nav-section-label">Actions</div>
-          <div class="nav-item" onclick="downloadData()">⬇️ Download data file</div>
-          <div class="nav-item" onclick="window.open('index.html','_blank')">🌐 Preview site</div>
-        </nav>
-        <div class="sidebar-footer">
-          <a href="javascript:void(0)" onclick="doLogout()">Sign out</a>
-        </div>
-      </aside>
+      </div>
+      <div class="proj-actions">
+        <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();deleteProject('${p.id}')">Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
 
-      <!-- MAIN -->
-      <main class="main">
+function showProjList() {
+  document.getElementById('proj-list-view').style.display = 'block';
+  document.getElementById('proj-editor-view').style.display = 'none';
+  document.getElementById('proj-topbar').textContent = 'Projects';
+  renderProjList();
+}
 
-        <!-- PROJECTS TAB -->
-        <div id="tab-projects">
-          <div class="topbar">
-            <span class="topbar-title" id="projects-topbar-title">Projects</span>
-            <div class="topbar-actions">
-              <button class="btn btn-outline btn-sm" onclick="showProjectList()">← All projects</button>
-              <button class="btn btn-primary btn-sm" onclick="addProject()">+ New project</button>
-            </div>
-          </div>
-          <div class="content">
-            <!-- PROJECT LIST VIEW -->
-            <div id="project-list-view">
-              <div class="flex-between" style="margin-bottom:20px">
-                <div>
-                  <div style="font-size:1rem;font-weight:700">All Projects</div>
-                  <div class="text-muted" id="project-count-text">0 projects</div>
-                </div>
-              </div>
-              <div class="project-list" id="project-list"></div>
-              <div id="project-empty" style="display:none;text-align:center;padding:60px 20px;color:var(--c-muted)">
-                <div style="font-size:2.5rem;margin-bottom:12px">✦</div>
-                <div style="font-weight:600;margin-bottom:8px">No projects yet</div>
-                <div style="font-size:0.82rem;margin-bottom:20px">Click "New project" to add your first case study.</div>
-                <button class="btn btn-primary" onclick="addProject()">+ Add first project</button>
-              </div>
-            </div>
+function addProject() {
+  const id = 'proj-' + Date.now();
+  const newCard = { id, date: '2026', title: 'New Project', description: '', metric: '', image: '', link: `project.html?id=${id}`, locked: false };
+  state.industrySection.projects.push(newCard);
+  if (!state.projectPages) state.projectPages = {};
+  state.projectPages[id] = {
+    title: 'New Project', summary: '', role: '', timeline: '', team: '', tools: '', heroImage: '', stats: [],
+    sections: {
+      overview: { enabled: true, tagline: '', content: '' },
+      contribution: { enabled: false, content: '' },
+      challenge: { enabled: false, title: 'The Challenge', content: '', image: '' },
+      problem: { enabled: false, title: 'Problem to Solve', content: '', images: [] },
+      strategy: { enabled: false, title: 'UX Strategy', content: '', image: '', images: [] },
+      solution: { enabled: false, title: 'The Solution', content: '', images: [] },
+      prototype: { enabled: false, title: 'Prototype', videoUrl: '' },
+      results: { enabled: false, title: 'Results & Impact', content: '', quote: '', quoteAuthor: '' },
+      impact: { enabled: false, title: 'The Impact', content: '' }
+    }
+  };
+  save();
+  editProject(id);
+}
 
-            <!-- PROJECT EDITOR VIEW -->
-            <div id="project-editor-view" style="display:none">
-              <div id="project-editor"></div>
-            </div>
-          </div>
-        </div>
+function deleteProject(id) {
+  if (!confirm('Delete this project?')) return;
+  state.industrySection.projects = state.industrySection.projects.filter(p => p.id !== id);
+  state.academicSection.projects = state.academicSection.projects.filter(p => p.id !== id);
+  if (state.projectPages) delete state.projectPages[id];
+  save();
+  showProjList();
+  toast('Project deleted.');
+}
 
-        <!-- SITE SETTINGS TAB -->
-        <div id="tab-site" style="display:none">
-          <div class="topbar">
-            <span class="topbar-title">Site Settings</span>
-            <div class="topbar-actions">
-              <button class="btn btn-success btn-sm" onclick="saveSiteSettings()">Save settings</button>
-            </div>
-          </div>
-          <div class="content">
-            <div class="card">
-              <div class="card-title">Identity</div>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>Your name</label>
-                  <input type="text" id="s-name" />
-                </div>
-                <div class="form-group">
-                  <label>Role / title</label>
-                  <input type="text" id="s-role" />
-                </div>
-                <div class="form-group full">
-                  <label>Tagline</label>
-                  <input type="text" id="s-tagline" />
-                </div>
-                <div class="form-group full">
-                  <label>Bio</label>
-                  <textarea id="s-bio" style="min-height:80px"></textarea>
-                </div>
-                <div class="form-group">
-                  <label>Avatar image URL</label>
-                  <input type="url" id="s-avatar" placeholder="https://..." />
-                </div>
-                <div class="form-group">
-                  <label>Hero image URL</label>
-                  <input type="url" id="s-heroimage" placeholder="https://..." />
-                </div>
-              </div>
-            </div>
+// ── PROJECT EDITOR ──────────────────────────────────────────────────────────────
+let editId = null;
 
-            <div class="card">
-              <div class="card-title">Contact & Social</div>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" id="s-email" />
-                </div>
-                <div class="form-group">
-                  <label>LinkedIn URL</label>
-                  <input type="url" id="s-linkedin" placeholder="https://linkedin.com/in/..." />
-                </div>
-                <div class="form-group">
-                  <label>Formspree ID</label>
-                  <input type="text" id="s-formspree" placeholder="abcdefgh" />
-                  <div class="input-hint">The 8-character ID from your Formspree form URL.</div>
-                </div>
-              </div>
-            </div>
+function editProject(id) {
+  editId = id;
+  const card = allProjects().find(p => p.id === id);
+  const page = (state.projectPages || {})[id] || {};
+  const s = page.sections || {};
 
-            <div class="card">
-              <div class="card-title">NDA / Protected Projects Password</div>
-              <p class="text-muted" style="margin-bottom:16px">Set a password visitors must enter to view NDA-protected case studies. Leave blank to disable protection.</p>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>New password (plain text)</label>
-                  <input type="text" id="nda-pw-plain" placeholder="e.g. portfolio2026" />
-                  <div class="input-hint">Type a password and click Generate Hash. The plain text is never saved.</div>
-                </div>
-                <div class="form-group">
-                  <div style="display:flex;align-items:flex-end;gap:8px">
-                    <div style="flex:1">
-                      <label>Stored hash</label>
-                      <input type="text" id="s-gdpr-hash" placeholder="SHA-256 hash will appear here" />
-                    </div>
-                    <button class="btn btn-outline btn-sm" onclick="generateHash()" style="flex-shrink:0;margin-bottom:0">Generate</button>
-                  </div>
-                </div>
-              </div>
-              <div class="hash-result" id="hash-result"></div>
-            </div>
+  document.getElementById('proj-list-view').style.display = 'none';
+  document.getElementById('proj-editor-view').style.display = 'block';
+  document.getElementById('proj-topbar').textContent = card ? card.title : 'Edit Project';
 
-            <div class="card">
-              <div class="card-title">Admin Password</div>
-              <p class="text-muted" style="margin-bottom:16px">Change the password to access this admin panel. You will need to update the hardcoded hash in admin.html.</p>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>New admin password</label>
-                  <input type="text" id="admin-pw-plain" placeholder="e.g. myadminpass" />
-                </div>
-                <div class="form-group">
-                  <label>Generated hash (copy to admin.html)</label>
-                  <input type="text" id="admin-hash-result" placeholder="Hash will appear here" readonly />
-                </div>
-              </div>
-              <button class="btn btn-outline btn-sm mt-2" onclick="generateAdminHash()">Generate admin hash</button>
-            </div>
-          </div>
-        </div>
-
-      </main>
+  document.getElementById('proj-editor').innerHTML = `
+    <div class="card">
+      <div class="card-title">Project Card (appears on homepage)</div>
+      <div class="grid2">
+        <div class="fg"><label>Date / company label</label><input type="text" id="pc-date" value="${esc(card?.date)}" oninput="updateCard('date',this.value)" /></div>
+        <div class="fg"><label>Card image URL</label><input type="url" id="pc-image" value="${esc(card?.image)}" oninput="updateCard('image',this.value)" /></div>
+        <div class="fg full"><label>Title</label><input type="text" id="pc-title" value="${esc(card?.title)}" oninput="updateCard('title',this.value);document.getElementById('proj-topbar').textContent=this.value;" /></div>
+        <div class="fg full"><label>Short description</label><textarea id="pc-desc" rows="2" oninput="updateCard('description',this.value)">${esc(card?.description)}</textarea></div>
+        <div class="fg"><label>Metric badge text</label><input type="text" id="pc-metric" value="${esc(card?.metric)}" oninput="updateCard('metric',this.value)" /></div>
+      </div>
+      <hr class="divider" />
+      <div class="toggle-row"><span class="tgl-label">🔒 Locked (NDA — requires password)</span><label class="tgl"><input type="checkbox" ${card?.locked ? 'checked' : ''} onchange="updateCard('locked',this.checked)" /><span class="tgl-s"></span></label></div>
     </div>
-  </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+    <div class="card">
+      <div class="card-title">Project Page — Meta</div>
+      <div class="grid3">
+        <div class="fg"><label>Role</label><input type="text" value="${esc(page.role)}" oninput="updatePage('role',this.value)" /></div>
+        <div class="fg"><label>Timeline</label><input type="text" value="${esc(page.timeline)}" oninput="updatePage('timeline',this.value)" /></div>
+        <div class="fg"><label>Team</label><input type="text" value="${esc(page.team)}" oninput="updatePage('team',this.value)" /></div>
+        <div class="fg"><label>Tools</label><input type="text" value="${esc(page.tools)}" oninput="updatePage('tools',this.value)" /></div>
+        <div class="fg"><label>Hero image URL</label><input type="url" value="${esc(page.heroImage)}" oninput="updatePage('heroImage',this.value)" /></div>
+        <div class="fg full"><label>Summary (subtitle under title)</label><textarea rows="2" oninput="updatePage('summary',this.value)">${esc(page.summary)}</textarea></div>
+      </div>
+      <hr class="divider" />
+      <div style="font-size:11px;font-weight:600;margin-bottom:8px">Impact Stats (shown at top of page)</div>
+      <div id="stats-list">${renderStats(page.stats || [])}</div>
+      <button class="btn btn-outline btn-sm mt-1" onclick="addStat()">+ Add stat</button>
+    </div>
 
-  <script src="projectData.js"></script>
-  <script>
-    // ── AUTH ──────────────────────────────────────────────────────────────────
-    // Default admin password hash: "jrosaux2026"
-    // To change: generate a new SHA-256 hash and replace ADMIN_HASH below.
-    const ADMIN_HASH = 'b1a6e3d4f7a8c2e9d0b5f4c8a7e1d2c9b0e3a6f5d8c1b4e7a0d3c6f9b2e5a8';
+    <div style="font-size:12px;font-weight:600;margin-bottom:10px">Content Sections</div>
 
-    // We use a simple approach: hash the entered password and compare.
-    async function sha256(str) {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
+    ${secBlock('overview','Overview', s.overview, `
+      <div class="fg full"><label>Tagline</label><input type="text" value="${esc(s.overview?.tagline)}" oninput="updateSec('overview','tagline',this.value)" /></div>
+      <div class="fg full"><label>Content (HTML supported)</label><textarea rows="5" oninput="updateSec('overview','content',this.value)">${esc(s.overview?.content)}</textarea></div>
+    `)}
 
-    async function doLogin() {
-      const pw = document.getElementById('login-pw').value;
-      const hash = await sha256(pw);
-      // Simple fallback: also accept if hash matches, or if ADMIN_HASH is the placeholder, accept 'jrosaux2026'
-      const isValid = hash === ADMIN_HASH || (ADMIN_HASH === 'b1a6e3d4f7a8c2e9d0b5f4c8a7e1d2c9b0e3a6f5d8c1b4e7a0d3c6f9b2e5a8' && pw === 'jrosaux2026');
-      if (isValid) {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
-        initApp();
-      } else {
-        document.getElementById('login-error').style.display = 'block';
-      }
-    }
+    ${secBlock('contribution','My Contribution', s.contribution, `
+      <div class="fg full"><label>Content (HTML, use &lt;ul&gt;&lt;li&gt; for bullets)</label><textarea rows="4" oninput="updateSec('contribution','content',this.value)">${esc(s.contribution?.content)}</textarea></div>
+    `)}
 
-    document.getElementById('login-pw').addEventListener('keypress', e => {
-      if (e.key === 'Enter') doLogin();
-    });
+    ${secBlock('challenge','The Challenge', s.challenge, `
+      <div class="fg full"><label>Section heading</label><input type="text" value="${esc(s.challenge?.title)}" oninput="updateSec('challenge','title',this.value)" /></div>
+      <div class="fg full"><label>Content</label><textarea rows="4" oninput="updateSec('challenge','content',this.value)">${esc(s.challenge?.content)}</textarea></div>
+      <div class="fg full"><label>Image URL (optional)</label><input type="url" value="${esc(s.challenge?.image)}" oninput="updateSec('challenge','image',this.value)" /></div>
+    `)}
 
-    function doLogout() {
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('app').style.display = 'none';
-      document.getElementById('login-pw').value = '';
-    }
+    ${secBlock('problem','Problem to Solve + Gallery', s.problem, `
+      <div class="fg full"><label>Section heading</label><input type="text" value="${esc(s.problem?.title)}" oninput="updateSec('problem','title',this.value)" /></div>
+      <div class="fg full"><label>Content</label><textarea rows="4" oninput="updateSec('problem','content',this.value)">${esc(s.problem?.content)}</textarea></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:12px 0 8px">Problem Gallery Images</div>
+      <div id="gal-problem">${renderGallery(s.problem?.images || [], 'problem')}</div>
+      <button class="btn btn-outline btn-sm" onclick="addGalleryImg('problem')">+ Add image</button>
+    `)}
 
-    // ── STATE ─────────────────────────────────────────────────────────────────
-    let state = JSON.parse(JSON.stringify(projectsData)); // deep copy
-    let selectedProjectId = null;
+    ${secBlock('strategy','UX Strategy + Gallery', s.strategy, `
+      <div class="fg full"><label>Section heading</label><input type="text" value="${esc(s.strategy?.title)}" oninput="updateSec('strategy','title',this.value)" /></div>
+      <div class="fg full"><label>Content</label><textarea rows="4" oninput="updateSec('strategy','content',this.value)">${esc(s.strategy?.content)}</textarea></div>
+      <div class="fg full"><label>Single section image URL (optional)</label><input type="url" value="${esc(s.strategy?.image)}" oninput="updateSec('strategy','image',this.value)" /></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:12px 0 8px">Strategy Gallery Images</div>
+      <div id="gal-strategy">${renderGallery(s.strategy?.images || [], 'strategy')}</div>
+      <button class="btn btn-outline btn-sm" onclick="addGalleryImg('strategy')">+ Add image</button>
+    `)}
 
-    // Load from localStorage if available
-    const saved = localStorage.getItem('cms_data');
-    if (saved) {
-      try { state = JSON.parse(saved); } catch(e) {}
-    } else {
-      state = JSON.parse(JSON.stringify(projectsData));
-    }
+    ${secBlock('solution','The Solution + Gallery', s.solution, `
+      <div class="fg full"><label>Section heading</label><input type="text" value="${esc(s.solution?.title)}" oninput="updateSec('solution','title',this.value)" /></div>
+      <div class="fg full"><label>Content</label><textarea rows="4" oninput="updateSec('solution','content',this.value)">${esc(s.solution?.content)}</textarea></div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:12px 0 8px">Solution Gallery Images</div>
+      <div id="gal-solution">${renderGallery(s.solution?.images || [], 'solution')}</div>
+      <button class="btn btn-outline btn-sm" onclick="addGalleryImg('solution')">+ Add image</button>
+    `)}
 
-    function saveState() {
-      localStorage.setItem('cms_data', JSON.stringify(state));
-    }
+    ${secBlock('prototype','Prototype / Video', s.prototype, `
+      <div class="fg full"><label>YouTube embed URL (use embed URL, not watch URL)</label><input type="url" value="${esc(s.prototype?.videoUrl)}" oninput="updateSec('prototype','videoUrl',this.value)" /></div>
+    `)}
 
-    function initApp() {
-      renderProjectList();
-      loadSiteSettings();
-    }
+    ${secBlock('results','Results & Impact', s.results, `
+      <div class="fg full"><label>Content</label><textarea rows="4" oninput="updateSec('results','content',this.value)">${esc(s.results?.content)}</textarea></div>
+      <div class="fg full"><label>Quote</label><textarea rows="2" oninput="updateSec('results','quote',this.value)">${esc(s.results?.quote)}</textarea></div>
+      <div class="fg full"><label>Quote author</label><input type="text" value="${esc(s.results?.quoteAuthor)}" oninput="updateSec('results','quoteAuthor',this.value)" /></div>
+    `)}
 
-    // ── TABS ──────────────────────────────────────────────────────────────────
-    function showTab(tab) {
-      ['projects','site'].forEach(t => {
-        document.getElementById(`tab-${t}`).style.display = t === tab ? 'block' : 'none';
-        document.getElementById(`nav-${t}`).classList.toggle('active', t === tab);
-      });
-      if (tab === 'projects') renderProjectList();
-    }
+    ${secBlock('impact','The Impact', s.impact, `
+      <div class="fg full"><label>Content</label><textarea rows="3" oninput="updateSec('impact','content',this.value)">${esc(s.impact?.content)}</textarea></div>
+    `)}
 
-    // ── PROJECT LIST ──────────────────────────────────────────────────────────
-    function renderProjectList() {
-      const list = document.getElementById('project-list');
-      const empty = document.getElementById('project-empty');
-      const count = document.getElementById('project-count-text');
-      const projects = state.projects || [];
+    <div class="flex mt-3" style="padding-bottom:2rem">
+      <button class="btn btn-success" onclick="saveProject()">✓ Save project</button>
+      <button class="btn btn-outline" onclick="showProjList()">← Back</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteProject('${id}')">Delete</button>
+    </div>`;
+}
 
-      count.textContent = `${projects.length} project${projects.length !== 1 ? 's' : ''}`;
+function secBlock(key, label, sec, inner) {
+  const on = sec?.enabled !== false;
+  return `<div class="sec-block">
+    <div class="sec-header" onclick="toggleSec(this)">
+      <label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" ${on?'checked':''} onchange="updateSec('${key}','enabled',this.checked)"/><span class="tgl-s"></span></label>
+      <span class="sec-header-title">${label}</span>
+      <span style="color:var(--text3);font-size:11px">▾</span>
+    </div>
+    <div class="sec-body"><div class="grid2">${inner}</div></div>
+  </div>`;
+}
 
-      if (projects.length === 0) {
-        list.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-      }
+function toggleSec(h) { h.nextElementSibling.classList.toggle('open'); }
 
-      empty.style.display = 'none';
-      list.innerHTML = projects.map((p, i) => `
-        <div class="project-item ${selectedProjectId === p.id ? 'selected' : ''}" onclick="editProject('${p.id}')">
-          <div class="project-item-thumb">
-            ${p.cardImage ? `<img src="${p.cardImage}" alt="" />` : '✦'}
-          </div>
-          <div class="project-item-info">
-            <div class="project-item-title">${p.title || 'Untitled project'}</div>
-            <div class="project-item-meta">${p.category || ''}${p.year ? ' · ' + p.year : ''}</div>
-            <div class="project-item-badges">
-              <span class="badge ${p.published !== false ? 'badge-published' : 'badge-draft'}">${p.published !== false ? 'Published' : 'Draft'}</span>
-              ${p.nda ? '<span class="badge badge-nda">🔒 NDA</span>' : ''}
-            </div>
-          </div>
-          <div class="project-item-actions">
-            <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); moveProject(${i}, -1)" ${i === 0 ? 'disabled' : ''}>↑</button>
-            <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); moveProject(${i}, 1)" ${i === projects.length - 1 ? 'disabled' : ''}>↓</button>
-            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteProject('${p.id}')">Delete</button>
-          </div>
-        </div>`).join('');
-    }
+function renderStats(stats) {
+  return stats.map((s, i) => `
+    <div class="row3">
+      <div class="fg"><label>Value</label><input type="text" value="${esc(s.number)}" oninput="updateStat(${i},'number',this.value)" placeholder="25%" /></div>
+      <div class="fg"><label>Label</label><input type="text" value="${esc(s.label)}" oninput="updateStat(${i},'label',this.value)" placeholder="Completion rate" /></div>
+      <div class="fg"><label>&nbsp;</label><button class="btn btn-danger btn-sm" onclick="removeStat(${i})">×</button></div>
+    </div>`).join('');
+}
 
-    function showProjectList() {
-      document.getElementById('project-list-view').style.display = 'block';
-      document.getElementById('project-editor-view').style.display = 'none';
-      document.getElementById('projects-topbar-title').textContent = 'Projects';
-      selectedProjectId = null;
-      renderProjectList();
-    }
+function renderGallery(images, key) {
+  return images.map((img, i) => `
+    <div class="row-img">
+      <div class="fg"><label>Image URL</label><input type="url" value="${esc(img.url||img)}" oninput="updateGalImg('${key}',${i},'url',this.value)" placeholder="https://..." /></div>
+      <div class="fg"><label>Caption (optional)</label><input type="text" value="${esc(img.caption||'')}" oninput="updateGalImg('${key}',${i},'caption',this.value)" /></div>
+      <div class="fg"><label>&nbsp;</label><button class="btn btn-danger btn-sm" onclick="removeGalImg('${key}',${i})">×</button></div>
+    </div>`).join('');
+}
 
-    function moveProject(index, dir) {
-      const projects = state.projects;
-      const newIndex = index + dir;
-      if (newIndex < 0 || newIndex >= projects.length) return;
-      [projects[index], projects[newIndex]] = [projects[newIndex], projects[index]];
-      saveState();
-      renderProjectList();
-    }
+// ── FIELD HELPERS ──────────────────────────────────────────────────────────────
+function getCard() { return allProjects().find(p => p.id === editId); }
+function getPage() { if (!state.projectPages) state.projectPages = {}; if (!state.projectPages[editId]) state.projectPages[editId] = {}; return state.projectPages[editId]; }
+function getSec(k) { const pg = getPage(); if (!pg.sections) pg.sections = {}; if (!pg.sections[k]) pg.sections[k] = {}; return pg.sections[k]; }
 
-    function deleteProject(id) {
-      if (!confirm('Delete this project? This cannot be undone.')) return;
-      state.projects = state.projects.filter(p => p.id !== id);
-      saveState();
-      showProjectList();
-      showToast('Project deleted.');
-    }
+function updateCard(f, v) { const c = getCard(); if (c) { c[f] = v; save(); } }
+function updatePage(f, v) { getPage()[f] = v; save(); }
+function updateSec(k, f, v) { getSec(k)[f] = v; save(); }
 
-    // ── PROJECT EDITOR ────────────────────────────────────────────────────────
-    function addProject() {
-      const id = 'proj-' + Date.now();
-      const newProject = {
-        id,
-        title: 'New Project',
-        category: 'UX Design',
-        tags: [],
-        year: new Date().getFullYear().toString(),
-        role: '',
-        duration: '',
-        tools: '',
-        published: false,
-        nda: false,
-        cardImage: '',
-        cardSummary: '',
-        sections: {
-          overview: { enabled: true, tagline: '', text: '', image: '' },
-          challenge: { enabled: true, title: '', text: '', image: '' },
-          solution: { enabled: true, title: '', text: '', image: '' },
-          results: { enabled: true, text: '', metrics: [] },
-          gallery: { enabled: false, images: [] },
-          prototype: { enabled: false, url: '' }
-        }
-      };
-      state.projects.push(newProject);
-      saveState();
-      editProject(id);
-    }
+function addStat() { const pg = getPage(); if (!pg.stats) pg.stats = []; pg.stats.push({number:'',label:''}); save(); document.getElementById('stats-list').innerHTML = renderStats(pg.stats); }
+function updateStat(i,f,v) { const pg = getPage(); pg.stats[i][f] = v; save(); }
+function removeStat(i) { const pg = getPage(); pg.stats.splice(i,1); save(); document.getElementById('stats-list').innerHTML = renderStats(pg.stats); }
 
-    function editProject(id) {
-      selectedProjectId = id;
-      const p = state.projects.find(proj => proj.id === id);
-      if (!p) return;
+function addGalleryImg(key) { const s = getSec(key); if (!s.images) s.images = []; s.images.push({url:'',caption:''}); save(); document.getElementById(`gal-${key}`).innerHTML = renderGallery(s.images, key); }
+function updateGalImg(key,i,f,v) { const s = getSec(key); s.images[i][f] = v; save(); }
+function removeGalImg(key,i) { const s = getSec(key); s.images.splice(i,1); save(); document.getElementById(`gal-${key}`).innerHTML = renderGallery(s.images, key); }
 
-      document.getElementById('project-list-view').style.display = 'none';
-      document.getElementById('project-editor-view').style.display = 'block';
-      document.getElementById('projects-topbar-title').textContent = p.title || 'Edit Project';
+function saveProject() { save(); toast('Project saved!','ok'); }
 
-      const sec = p.sections || {};
+// ── HERO / SITE ─────────────────────────────────────────────────────────────────
+function loadHero() {
+  const h = state.hero || {};
+  document.getElementById('h-tag').value = h.tag || '';
+  document.getElementById('h-image').value = h.image || '';
+  document.getElementById('h-headline').value = h.headline || '';
+  document.getElementById('h-headlineStrong').value = h.headlineStrong || '';
+  document.getElementById('h-subtitle').value = h.subtitle || '';
+  document.getElementById('h-cta1text').value = h.ctaPrimary?.text || '';
+  document.getElementById('h-cta1url').value = h.ctaPrimary?.url || '';
+  document.getElementById('h-cta2text').value = h.ctaSecondary?.text || '';
+  document.getElementById('h-cta2url').value = h.ctaSecondary?.url || '';
+  document.getElementById('hero-stats-list').innerHTML = renderHeroStats(h.stats || []);
+  document.getElementById('nav-logo-txt').value = state.navigation?.logo || '';
+  document.getElementById('footer-copy').value = state.footer?.copyright || '';
+  const nb = state.industrySection?.ndaBanner || {};
+  document.getElementById('nda-banner-enabled').checked = !!nb.enabled;
+  document.getElementById('nda-banner-text').value = nb.text || '';
+  document.getElementById('nda-banner-linktext').value = nb.linkText || '';
+  document.getElementById('nda-banner-linkurl').value = nb.linkUrl || '';
+}
 
-      document.getElementById('project-editor').innerHTML = `
-        <!-- BASICS -->
-        <div class="card">
-          <div class="card-title">Project Info</div>
-          <div class="form-grid">
-            <div class="form-group full">
-              <label>Title</label>
-              <input type="text" id="p-title" value="${esc(p.title)}" oninput="updateField('title', this.value)" />
-            </div>
-            <div class="form-group">
-              <label>Category</label>
-              <input type="text" id="p-category" value="${esc(p.category)}" oninput="updateField('category', this.value)" placeholder="UX Design, Design Systems..." />
-            </div>
-            <div class="form-group">
-              <label>Year</label>
-              <input type="text" id="p-year" value="${esc(p.year)}" oninput="updateField('year', this.value)" placeholder="2024" />
-            </div>
-            <div class="form-group">
-              <label>Role</label>
-              <input type="text" id="p-role" value="${esc(p.role)}" oninput="updateField('role', this.value)" placeholder="Lead UX Designer" />
-            </div>
-            <div class="form-group">
-              <label>Duration</label>
-              <input type="text" id="p-duration" value="${esc(p.duration)}" oninput="updateField('duration', this.value)" placeholder="6 months" />
-            </div>
-            <div class="form-group full">
-              <label>Tools</label>
-              <input type="text" id="p-tools" value="${esc(p.tools)}" oninput="updateField('tools', this.value)" placeholder="Figma, React, Miro..." />
-            </div>
-            <div class="form-group full">
-              <label>Card summary</label>
-              <textarea id="p-summary" oninput="updateField('cardSummary', this.value)" rows="3">${esc(p.cardSummary)}</textarea>
-              <div class="input-hint">Short description shown on the homepage card.</div>
-            </div>
-            <div class="form-group">
-              <label>Card image URL</label>
-              <input type="url" id="p-cardimage" value="${esc(p.cardImage)}" oninput="updateField('cardImage', this.value)" placeholder="https://..." />
-            </div>
-          </div>
-          <hr class="divider" />
-          <div class="toggle-row">
-            <span class="toggle-label">Published (visible on homepage)</span>
-            <label class="toggle"><input type="checkbox" ${p.published !== false ? 'checked' : ''} onchange="updateField('published', this.checked)" /><span class="toggle-slider"></span></label>
-          </div>
-          <div class="toggle-row">
-            <span class="toggle-label">🔒 NDA protected (requires password)</span>
-            <label class="toggle"><input type="checkbox" ${p.nda ? 'checked' : ''} onchange="updateField('nda', this.checked)" /><span class="toggle-slider"></span></label>
-          </div>
-        </div>
+function renderHeroStats(stats) {
+  return stats.map((s,i) => `
+    <div class="row3">
+      <div class="fg"><label>Number</label><input type="text" value="${esc(s.number)}" oninput="updateHeroStat(${i},'number',this.value)" /></div>
+      <div class="fg"><label>Label</label><input type="text" value="${esc(s.label)}" oninput="updateHeroStat(${i},'label',this.value)" /></div>
+      <div class="fg"><label>&nbsp;</label><button class="btn btn-danger btn-sm" onclick="removeHeroStat(${i})">×</button></div>
+    </div>`).join('');
+}
 
-        <!-- SECTIONS -->
-        <div style="font-size:0.88rem;font-weight:700;margin-bottom:12px;color:var(--c-ink)">Content Sections</div>
+function addHeroStat() { if (!state.hero.stats) state.hero.stats = []; state.hero.stats.push({number:'',label:''}); save(); document.getElementById('hero-stats-list').innerHTML = renderHeroStats(state.hero.stats); }
+function updateHeroStat(i,f,v) { state.hero.stats[i][f] = v; save(); }
+function removeHeroStat(i) { state.hero.stats.splice(i,1); save(); document.getElementById('hero-stats-list').innerHTML = renderHeroStats(state.hero.stats); }
 
-        ${sectionBlock('overview', 'Overview', sec.overview, `
-          <div class="form-group full">
-            <label>Tagline</label>
-            <input type="text" value="${esc(sec.overview?.tagline)}" oninput="updateSection('overview','tagline',this.value)" placeholder="One-line summary of the project..." />
-          </div>
-          <div class="form-group full">
-            <label>Text (use double line breaks for paragraphs)</label>
-            <textarea oninput="updateSection('overview','text',this.value)" style="min-height:140px">${esc(sec.overview?.text)}</textarea>
-          </div>
-          <div class="form-group full">
-            <label>Section image URL</label>
-            <input type="url" value="${esc(sec.overview?.image)}" oninput="updateSection('overview','image',this.value)" placeholder="https://..." />
-          </div>
-        `)}
+function saveHero() {
+  state.hero.tag = document.getElementById('h-tag').value;
+  state.hero.image = document.getElementById('h-image').value;
+  state.hero.headline = document.getElementById('h-headline').value;
+  state.hero.headlineStrong = document.getElementById('h-headlineStrong').value;
+  state.hero.subtitle = document.getElementById('h-subtitle').value;
+  state.hero.ctaPrimary = { text: document.getElementById('h-cta1text').value, url: document.getElementById('h-cta1url').value };
+  state.hero.ctaSecondary = { text: document.getElementById('h-cta2text').value, url: document.getElementById('h-cta2url').value };
+  state.navigation.logo = document.getElementById('nav-logo-txt').value;
+  state.footer.copyright = document.getElementById('footer-copy').value;
+  if (!state.industrySection.ndaBanner) state.industrySection.ndaBanner = {};
+  state.industrySection.ndaBanner.enabled = document.getElementById('nda-banner-enabled').checked;
+  state.industrySection.ndaBanner.text = document.getElementById('nda-banner-text').value;
+  state.industrySection.ndaBanner.linkText = document.getElementById('nda-banner-linktext').value;
+  state.industrySection.ndaBanner.linkUrl = document.getElementById('nda-banner-linkurl').value;
+  save(); toast('Hero & site saved!', 'ok');
+}
 
-        ${sectionBlock('challenge', 'Challenge', sec.challenge, `
-          <div class="form-group full">
-            <label>Section heading</label>
-            <input type="text" value="${esc(sec.challenge?.title)}" oninput="updateSection('challenge','title',this.value)" placeholder="What was the core problem?" />
-          </div>
-          <div class="form-group full">
-            <label>Text</label>
-            <textarea oninput="updateSection('challenge','text',this.value)" style="min-height:140px">${esc(sec.challenge?.text)}</textarea>
-          </div>
-          <div class="form-group full">
-            <label>Section image URL</label>
-            <input type="url" value="${esc(sec.challenge?.image)}" oninput="updateSection('challenge','image',this.value)" placeholder="https://..." />
-          </div>
-        `)}
+// ── ABOUT ───────────────────────────────────────────────────────────────────────
+function loadAbout() {
+  const a = state.about || {};
+  document.getElementById('a-tag').value = a.tag || '';
+  document.getElementById('a-image').value = a.image || '';
+  document.getElementById('a-headline').value = a.headline || '';
+  document.getElementById('a-headlineStrong').value = a.headlineStrong || '';
+  document.getElementById('a-bio1').value = a.bio1 || '';
+  document.getElementById('a-bio2').value = a.bio2 || '';
+  document.getElementById('a-ctaText').value = a.ctaText || '';
+  document.getElementById('a-ctaUrl').value = a.ctaUrl || '';
+  renderSkills(a.skills || []);
+  renderExp(a.experience || []);
+}
 
-        ${sectionBlock('solution', 'Solution', sec.solution, `
-          <div class="form-group full">
-            <label>Section heading</label>
-            <input type="text" value="${esc(sec.solution?.title)}" oninput="updateSection('solution','title',this.value)" placeholder="How did you solve it?" />
-          </div>
-          <div class="form-group full">
-            <label>Text</label>
-            <textarea oninput="updateSection('solution','text',this.value)" style="min-height:140px">${esc(sec.solution?.text)}</textarea>
-          </div>
-          <div class="form-group full">
-            <label>Section image URL</label>
-            <input type="url" value="${esc(sec.solution?.image)}" oninput="updateSection('solution','image',this.value)" placeholder="https://..." />
-          </div>
-        `)}
+function renderSkills(skills) {
+  document.getElementById('skills-list').innerHTML = skills.map((sk, i) => `
+    <div class="row3" style="grid-template-columns:1fr 2fr auto">
+      <div class="fg"><label>Category</label><input type="text" value="${esc(sk.category)}" oninput="updateSkill(${i},'category',this.value)" /></div>
+      <div class="fg"><label>Items (comma separated)</label><input type="text" value="${esc(sk.items)}" oninput="updateSkill(${i},'items',this.value)" /></div>
+      <div class="fg"><label>&nbsp;</label><button class="btn btn-danger btn-sm" onclick="removeSkill(${i})">×</button></div>
+    </div>`).join('');
+}
+function addSkill() { if (!state.about.skills) state.about.skills = []; state.about.skills.push({category:'',items:''}); save(); renderSkills(state.about.skills); }
+function updateSkill(i,f,v) { state.about.skills[i][f] = v; save(); }
+function removeSkill(i) { state.about.skills.splice(i,1); save(); renderSkills(state.about.skills); }
 
-        ${sectionBlock('results', 'Results & Impact', sec.results, `
-          <div class="form-group full">
-            <label>Results text</label>
-            <textarea oninput="updateSection('results','text',this.value)" style="min-height:100px">${esc(sec.results?.text)}</textarea>
-          </div>
-          <div style="font-size:0.78rem;font-weight:600;color:var(--c-body);margin:16px 0 8px">Metrics</div>
-          <div id="metrics-list">${renderMetrics(sec.results?.metrics || [])}</div>
-          <button class="btn btn-outline btn-sm mt-2" onclick="addMetric()">+ Add metric</button>
-        `)}
+function renderExp(exp) {
+  document.getElementById('exp-list').innerHTML = exp.map((ex, i) => `
+    <div class="card" style="margin-bottom:10px">
+      <div class="grid2">
+        <div class="fg"><label>Period</label><input type="text" value="${esc(ex.period)}" oninput="updateExp(${i},'period',this.value)" /></div>
+        <div class="fg"><label>Company</label><input type="text" value="${esc(ex.company)}" oninput="updateExp(${i},'company',this.value)" /></div>
+        <div class="fg"><label>Role</label><input type="text" value="${esc(ex.role)}" oninput="updateExp(${i},'role',this.value)" /></div>
+        <div class="fg full"><label>Description</label><textarea rows="2" oninput="updateExp(${i},'description',this.value)">${esc(ex.description)}</textarea></div>
+      </div>
+      <button class="btn btn-danger btn-sm mt-1" onclick="removeExp(${i})">Remove</button>
+    </div>`).join('');
+}
+function addExp() { if (!state.about.experience) state.about.experience = []; state.about.experience.push({period:'',role:'',company:'',description:''}); save(); renderExp(state.about.experience); }
+function updateExp(i,f,v) { state.about.experience[i][f] = v; save(); }
+function removeExp(i) { state.about.experience.splice(i,1); save(); renderExp(state.about.experience); }
 
-        ${sectionBlock('gallery', 'Gallery', sec.gallery, `
-          <div id="gallery-list">${renderGalleryRows(sec.gallery?.images || [])}</div>
-          <button class="btn btn-outline btn-sm mt-2" onclick="addGalleryImage()">+ Add image</button>
-          <div class="input-hint mt-2">Add image URLs and optional captions. Images open in a lightbox on the project page.</div>
-        `)}
+function saveAbout() {
+  if (!state.about) state.about = {};
+  state.about.tag = document.getElementById('a-tag').value;
+  state.about.image = document.getElementById('a-image').value;
+  state.about.headline = document.getElementById('a-headline').value;
+  state.about.headlineStrong = document.getElementById('a-headlineStrong').value;
+  state.about.bio1 = document.getElementById('a-bio1').value;
+  state.about.bio2 = document.getElementById('a-bio2').value;
+  state.about.ctaText = document.getElementById('a-ctaText').value;
+  state.about.ctaUrl = document.getElementById('a-ctaUrl').value;
+  save(); toast('About page saved!', 'ok');
+}
 
-        ${sectionBlock('prototype', 'Prototype Embed', sec.prototype, `
-          <div class="form-group full">
-            <label>Figma / prototype embed URL</label>
-            <input type="url" value="${esc(sec.prototype?.url)}" oninput="updateSection('prototype','url',this.value)" placeholder="https://www.figma.com/embed?..." />
-            <div class="input-hint">Use the embed URL from Figma (Share → Embed). The iframe will render at 600px height.</div>
-          </div>
-        `)}
+// ── CONTACT ─────────────────────────────────────────────────────────────────────
+function loadContact() {
+  const c = state.contact || {};
+  document.getElementById('c-tag').value = c.tag || '';
+  document.getElementById('c-headline').value = c.headline || '';
+  document.getElementById('c-headlineStrong').value = c.headlineStrong || '';
+  document.getElementById('c-subtitle').value = c.subtitle || '';
+  document.getElementById('c-email').value = c.email || '';
+  document.getElementById('c-linkedin').value = c.linkedin || '';
+  document.getElementById('c-formspree').value = c.formspreeId || '';
+  document.getElementById('c-availability').value = c.availability || '';
+}
 
-        <div class="flex" style="margin-top:24px;padding-bottom:32px">
-          <button class="btn btn-success" onclick="saveProject()">✓ Save project</button>
-          <button class="btn btn-outline" onclick="showProjectList()">← Back to list</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteProject('${p.id}')">Delete project</button>
-        </div>
-      `;
-    }
+function saveContact() {
+  if (!state.contact) state.contact = {};
+  state.contact.tag = document.getElementById('c-tag').value;
+  state.contact.headline = document.getElementById('c-headline').value;
+  state.contact.headlineStrong = document.getElementById('c-headlineStrong').value;
+  state.contact.subtitle = document.getElementById('c-subtitle').value;
+  state.contact.email = document.getElementById('c-email').value;
+  state.contact.linkedin = document.getElementById('c-linkedin').value;
+  state.contact.formspreeId = document.getElementById('c-formspree').value;
+  state.contact.availability = document.getElementById('c-availability').value;
+  save(); toast('Contact page saved!', 'ok');
+}
 
-    function sectionBlock(key, label, sec, bodyHtml) {
-      const enabled = sec?.enabled !== false;
-      return `
-        <div class="section-block">
-          <div class="section-header" onclick="toggleSection(this)">
-            <label class="toggle" onclick="event.stopPropagation()">
-              <input type="checkbox" ${enabled ? 'checked' : ''} onchange="updateSection('${key}','enabled',this.checked)" />
-              <span class="toggle-slider"></span>
-            </label>
-            <span class="section-header-title">${label}</span>
-            <span style="color:var(--c-muted);font-size:0.8rem">▾</span>
-          </div>
-          <div class="section-body">
-            <div class="form-grid">${bodyHtml}</div>
-          </div>
-        </div>`;
-    }
+// ── NDA ──────────────────────────────────────────────────────────────────────────
+async function genNdaHash() {
+  const pw = document.getElementById('nda-plain').value;
+  if (!pw) { toast('Enter a password first.','err'); return; }
+  const hash = await sha256(pw);
+  document.getElementById('nda-hash-display').value = hash;
+  toast('Hash generated! Click "Save to data" to store.', 'ok');
+}
 
-    function toggleSection(header) {
-      const body = header.nextElementSibling;
-      body.classList.toggle('open');
-    }
+function saveNdaHash() {
+  const hash = document.getElementById('nda-hash-display').value;
+  if (!hash) { toast('Generate a hash first.','err'); return; }
+  state.ndaPasswordHash = hash;
+  save(); toast('NDA hash saved!', 'ok');
+}
 
-    function renderMetrics(metrics) {
-      return metrics.map((m, i) => `
-        <div class="metric-row">
-          <div class="form-group">
-            <label>Value</label>
-            <input type="text" value="${esc(m.value)}" oninput="updateMetric(${i},'value',this.value)" placeholder="40%" />
-          </div>
-          <div class="form-group">
-            <label>Label</label>
-            <input type="text" value="${esc(m.label)}" oninput="updateMetric(${i},'label',this.value)" placeholder="Faster design time" />
-          </div>
-          <div class="form-group">
-            <label>&nbsp;</label>
-            <button class="btn btn-danger btn-sm" onclick="removeMetric(${i})">×</button>
-          </div>
-        </div>`).join('');
-    }
+async function genAdminHash() {
+  const pw = document.getElementById('admin-plain').value;
+  if (!pw) { toast('Enter a password.','err'); return; }
+  const hash = await sha256(pw);
+  document.getElementById('admin-hash-out').value = hash;
+  toast('Copy this hash and replace ADMIN_HASH in admin.html.', 'ok');
+}
 
-    function renderGalleryRows(images) {
-      return images.map((img, i) => `
-        <div class="gallery-row">
-          <div class="form-group">
-            <label>Image URL</label>
-            <input type="url" value="${esc(img.url)}" oninput="updateGalleryImage(${i},'url',this.value)" placeholder="https://..." />
-          </div>
-          <div class="form-group">
-            <label>Caption (optional)</label>
-            <input type="text" value="${esc(img.caption)}" oninput="updateGalleryImage(${i},'caption',this.value)" placeholder="Brief description" />
-          </div>
-          <div class="form-group">
-            <label>&nbsp;</label>
-            <button class="btn btn-danger btn-sm" onclick="removeGalleryImage(${i})">×</button>
-          </div>
-        </div>`).join('');
-    }
+// ── DOWNLOAD ──────────────────────────────────────────────────────────────────────
+function downloadData() {
+  const content = `const portfolioData = ${JSON.stringify(state, null, 2)};`;
+  const blob = new Blob([content], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.js'; a.click();
+  URL.revokeObjectURL(url);
+  toast('data.js downloaded! Upload to GitHub to publish.', 'ok');
+}
 
-    // ── FIELD UPDATES ─────────────────────────────────────────────────────────
-    function getProject() { return state.projects.find(p => p.id === selectedProjectId); }
-
-    function updateField(field, value) {
-      const p = getProject();
-      if (!p) return;
-      p[field] = value;
-      saveState();
-      if (field === 'title') document.getElementById('projects-topbar-title').textContent = value || 'Edit Project';
-    }
-
-    function updateSection(sectionKey, field, value) {
-      const p = getProject();
-      if (!p) return;
-      if (!p.sections[sectionKey]) p.sections[sectionKey] = {};
-      p.sections[sectionKey][field] = value;
-      saveState();
-    }
-
-    function addMetric() {
-      const p = getProject();
-      if (!p) return;
-      if (!p.sections.results.metrics) p.sections.results.metrics = [];
-      p.sections.results.metrics.push({ value: '', label: '' });
-      saveState();
-      document.getElementById('metrics-list').innerHTML = renderMetrics(p.sections.results.metrics);
-    }
-
-    function updateMetric(i, field, value) {
-      const p = getProject();
-      if (!p) return;
-      p.sections.results.metrics[i][field] = value;
-      saveState();
-    }
-
-    function removeMetric(i) {
-      const p = getProject();
-      if (!p) return;
-      p.sections.results.metrics.splice(i, 1);
-      saveState();
-      document.getElementById('metrics-list').innerHTML = renderMetrics(p.sections.results.metrics);
-    }
-
-    function addGalleryImage() {
-      const p = getProject();
-      if (!p) return;
-      if (!p.sections.gallery.images) p.sections.gallery.images = [];
-      p.sections.gallery.images.push({ url: '', caption: '' });
-      saveState();
-      document.getElementById('gallery-list').innerHTML = renderGalleryRows(p.sections.gallery.images);
-    }
-
-    function updateGalleryImage(i, field, value) {
-      const p = getProject();
-      if (!p) return;
-      p.sections.gallery.images[i][field] = value;
-      saveState();
-    }
-
-    function removeGalleryImage(i) {
-      const p = getProject();
-      if (!p) return;
-      p.sections.gallery.images.splice(i, 1);
-      saveState();
-      document.getElementById('gallery-list').innerHTML = renderGalleryRows(p.sections.gallery.images);
-    }
-
-    function saveProject() {
-      saveState();
-      showToast('Project saved!', 'success');
-    }
-
-    // ── SITE SETTINGS ─────────────────────────────────────────────────────────
-    function loadSiteSettings() {
-      const s = state.site || {};
-      document.getElementById('s-name').value = s.name || '';
-      document.getElementById('s-role').value = s.role || '';
-      document.getElementById('s-tagline').value = s.tagline || '';
-      document.getElementById('s-bio').value = s.bio || '';
-      document.getElementById('s-avatar').value = s.avatarImage || '';
-      document.getElementById('s-heroimage').value = s.heroImage || '';
-      document.getElementById('s-email').value = s.email || '';
-      document.getElementById('s-linkedin').value = s.linkedin || '';
-      document.getElementById('s-formspree').value = s.formspreeId || '';
-      document.getElementById('s-gdpr-hash').value = s.gdprPasswordHash || '';
-    }
-
-    function saveSiteSettings() {
-      state.site = {
-        ...state.site,
-        name: document.getElementById('s-name').value,
-        role: document.getElementById('s-role').value,
-        tagline: document.getElementById('s-tagline').value,
-        bio: document.getElementById('s-bio').value,
-        avatarImage: document.getElementById('s-avatar').value,
-        heroImage: document.getElementById('s-heroimage').value,
-        email: document.getElementById('s-email').value,
-        linkedin: document.getElementById('s-linkedin').value,
-        formspreeId: document.getElementById('s-formspree').value,
-        gdprPasswordHash: document.getElementById('s-gdpr-hash').value
-      };
-      saveState();
-      showToast('Site settings saved!', 'success');
-    }
-
-    async function generateHash() {
-      const pw = document.getElementById('nda-pw-plain').value;
-      if (!pw) return alert('Enter a password first.');
-      const hash = await sha256(pw);
-      document.getElementById('s-gdpr-hash').value = hash;
-      const result = document.getElementById('hash-result');
-      result.textContent = `Hash for "${pw}": ${hash}`;
-      result.style.display = 'block';
-      showToast('Hash generated! Click Save settings to store it.', 'success');
-    }
-
-    async function generateAdminHash() {
-      const pw = document.getElementById('admin-pw-plain').value;
-      if (!pw) return alert('Enter a password first.');
-      const hash = await sha256(pw);
-      document.getElementById('admin-hash-result').value = hash;
-      showToast('Copy this hash and replace ADMIN_HASH in admin.html.', 'success');
-    }
-
-    // ── DOWNLOAD ──────────────────────────────────────────────────────────────
-    function downloadData() {
-      const content = `const projectsData = ${JSON.stringify(state, null, 2)};`;
-      const blob = new Blob([content], { type: 'application/javascript' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'projectData.js';
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('projectData.js downloaded! Upload to GitHub to publish.', 'success');
-    }
-
-    // ── UTILS ─────────────────────────────────────────────────────────────────
-    function esc(str) {
-      if (!str) return '';
-      return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    }
-
-    function showToast(msg, type = '') {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.className = `toast show ${type}`;
-      setTimeout(() => { t.className = 'toast'; }, 3500);
-    }
-  </script>
+// ── UTILS ─────────────────────────────────────────────────────────────────────────
+function esc(s) { if (!s) return ''; return String(s).replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(msg, type='') { const t = document.getElementById('toast'); t.textContent = msg; t.className = `toast show ${type}`; setTimeout(() => t.className = 'toast', 3500); }
+</script>
 </body>
 </html>

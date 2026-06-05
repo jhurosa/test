@@ -4,897 +4,151 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juliana Rosa — UX Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="description" content="UX Designer with 7+ years of experience. Strategic design and measurable impact." />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --c-bg: #f8f7f4;
-      --c-white: #ffffff;
-      --c-ink: #1a1a1a;
-      --c-body: #555555;
-      --c-muted: #767676;
-      --c-border: #e5e3de;
-      --c-accent: #1A5780;
-      --c-accent-light: #e8f0f6;
-      --font: 'Montserrat', sans-serif;
-      --radius: 12px;
-      --shadow: 0 2px 16px rgba(0,0,0,0.07);
-      --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background: var(--c-bg);
-      color: var(--c-ink);
-      line-height: 1.6;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(248,247,244,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--c-border);
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-    }
-
-    .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo span { color: var(--c-accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--c-body);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--c-accent); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 40px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-content { max-width: 680px; }
-
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 24px;
-      padding: 6px 14px;
-      background: var(--c-accent-light);
-      border-radius: 100px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--c-ink);
-      margin-bottom: 24px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--c-accent);
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--c-body);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 520px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      transition: all 0.2s;
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary {
-      background: var(--c-accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: #154668;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(26,87,128,0.3);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--c-ink);
-      border: 1.5px solid var(--c-border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--c-accent);
-      color: var(--c-accent);
-      transform: translateY(-1px);
-    }
-
-    /* SECTION */
-    section { padding: 100px 40px; }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--c-ink);
-      margin-bottom: 48px;
-    }
-
-    /* PROJECTS */
-    #work { background: var(--c-white); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-    }
-
-    .project-card {
-      background: var(--c-white);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: all 0.25s;
-      box-shadow: var(--shadow);
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--c-accent);
-    }
-
-    .card-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: var(--c-accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-image-placeholder {
-      width: 100%;
-      height: 220px;
-      background: linear-gradient(135deg, var(--c-accent-light) 0%, #dce8f0 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-
-    .card-body { padding: 24px; }
-
-    .card-category {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      margin-bottom: 10px;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-
-    .card-summary {
-      font-size: 0.88rem;
-      color: var(--c-body);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .card-meta {
-      display: flex;
-      gap: 16px;
-      font-size: 0.78rem;
-      color: var(--c-muted);
-    }
-
-    .card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nda-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #7c5f00;
-      background: #fff8e1;
-      border: 1px solid #ffe082;
-      border-radius: 4px;
-      padding: 3px 8px;
-      margin-top: 12px;
-    }
-
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 80px 40px;
-      color: var(--c-muted);
-    }
-
-    .empty-state p {
-      font-size: 1rem;
-      margin-top: 12px;
-    }
-
-    /* ABOUT */
-    #about { background: var(--c-bg); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-avatar {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: var(--radius);
-      object-fit: cover;
-      background: var(--c-accent-light);
-    }
-
-    .about-avatar-placeholder {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--c-accent-light), #dce8f0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-    }
-
-    .about-text .section-label { margin-bottom: 8px; }
-    .about-text .section-title { margin-bottom: 20px; }
-
-    .about-bio {
-      font-size: 1rem;
-      color: var(--c-body);
-      line-height: 1.8;
-      margin-bottom: 32px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .stat {
-      padding: 20px;
-      background: var(--c-white);
-      border: 1px solid var(--c-border);
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--c-accent);
-      letter-spacing: -0.02em;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--c-muted);
-      margin-top: 4px;
-    }
-
-    /* CONTACT */
-    #contact { background: var(--c-white); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .contact-intro {
-      font-size: 1rem;
-      color: var(--c-body);
-      line-height: 1.8;
-      margin-bottom: 32px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--c-ink);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .contact-link:hover { color: var(--c-accent); }
-
-    .contact-link svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
-
-    .contact-form { display: flex; flex-direction: column; gap: 16px; }
-
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-
-    .form-group label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--c-ink);
-      letter-spacing: 0.02em;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      font-family: var(--font);
-      font-size: 0.9rem;
-      color: var(--c-ink);
-      background: var(--c-bg);
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--c-accent);
-    }
-
-    .form-group textarea { min-height: 120px; }
-
-    .form-success {
-      display: none;
-      padding: 16px;
-      background: #e8f5e9;
-      border: 1px solid #a5d6a7;
-      border-radius: 8px;
-      color: #2e7d32;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 40px;
-      border-top: 1px solid var(--c-border);
-      font-size: 0.82rem;
-      color: var(--c-muted);
-    }
-
-    /* NDA MODAL */
-    .nda-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nda-overlay.active { display: flex; }
-
-    .nda-modal {
-      background: var(--c-white);
-      border-radius: 16px;
-      padding: 40px;
-      max-width: 440px;
-      width: 90%;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-    }
-
-    .nda-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--c-accent-light);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-    }
-
-    .nda-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      margin-bottom: 8px;
-    }
-
-    .nda-desc {
-      font-size: 0.88rem;
-      color: var(--c-body);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .nda-tabs {
-      display: flex;
-      gap: 0;
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
-
-    .nda-tab {
-      flex: 1;
-      padding: 10px;
-      font-family: var(--font);
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      color: var(--c-muted);
-      transition: all 0.2s;
-    }
-
-    .nda-tab.active {
-      background: var(--c-accent);
-      color: #fff;
-    }
-
-    .nda-panel { display: none; }
-    .nda-panel.active { display: block; }
-
-    .nda-input {
-      width: 100%;
-      font-family: var(--font);
-      font-size: 0.9rem;
-      padding: 12px 16px;
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s;
-    }
-
-    .nda-input:focus { outline: none; border-color: var(--c-accent); }
-
-    .nda-error {
-      font-size: 0.82rem;
-      color: #c62828;
-      margin-bottom: 12px;
-      display: none;
-    }
-
-    .nda-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .nda-close-btn {
-      background: transparent;
-      border: 1.5px solid var(--c-border);
-      color: var(--c-body);
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .nda-close-btn:hover { border-color: var(--c-ink); color: var(--c-ink); }
-
-    /* RESPONSIVE */
+      --bg: #ffffff; --text: #1a1a1a; --text2: #555555; --text3: #767676;
+      --border: #e5e5e5; --surface: #f7f7f7;
+    }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+    .nav-logo { font-size: 14px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .nav-links { display: flex; gap: 2rem; font-size: 11px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; padding: 4rem 3rem 3rem; max-width: 1200px; margin: 0 auto; }
+    .hero-tag { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin-bottom: 1rem; }
+    .hero h1 { font-size: 38px; font-weight: 300; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+    .hero h1 strong { font-weight: 500; }
+    .hero-sub { font-size: 14px; line-height: 1.85; font-weight: 400; color: var(--text2); max-width: 360px; margin-bottom: 1.5rem; }
+    .hero-cta { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+    .btn { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 22px; border-radius: 24px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; border: none; }
+    .btn:hover { opacity: 0.8; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-secondary { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+    .hero-stats { display: flex; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .stat-num { font-size: 22px; font-weight: 500; letter-spacing: -0.5px; }
+    .stat-label { font-size: 12px; font-weight: 400; color: var(--text3); margin-top: 3px; letter-spacing: 0.5px; }
+    .hero-image { width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .projects { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem 4rem; }
+    .divider { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text2); white-space: nowrap; }
+
+    .nda-banner { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 11px 16px; margin-bottom: 1.5rem; font-size: 12px; font-weight: 400; color: var(--text2); line-height: 1.6; }
+    .nda-banner svg { flex-shrink: 0; opacity: 0.5; }
+    .nda-banner a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+
+    .project-grid { display: grid; gap: 1rem; margin-bottom: 3rem; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card { border-radius: 12px; border: 1px solid var(--border); background: var(--bg); overflow: hidden; cursor: pointer; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: inherit; display: block; }
+    .card:hover { border-color: #aaaaaa; transform: translateY(-2px); }
+    .card.locked { opacity: 0.72; }
+    .card.locked:hover { opacity: 1; }
+    .card-thumb { height: 140px; background: var(--surface); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .card.locked .card-thumb { filter: blur(3px); }
+    .card-thumb-placeholder { padding: 16px; width: 100%; display: flex; flex-direction: column; gap: 7px; }
+    .placeholder-bar { height: 8px; border-radius: 4px; background: var(--border); }
+    .placeholder-row { display: flex; gap: 8px; align-items: center; }
+    .placeholder-sq { border-radius: 4px; background: var(--border); width: 40px; height: 40px; flex-shrink: 0; }
+    .card-body { padding: 0.75rem 1rem 0.9rem; }
+    .card-date { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin-bottom: 5px; }
+    .card-title { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 5px; }
+    .card-desc { font-size: 12px; font-weight: 400; color: var(--text2); line-height: 1.6; }
+    .card-metric { display: inline-block; margin-top: 9px; font-size: 11px; font-weight: 500; background: var(--surface); color: var(--text3); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); }
+
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 400; color: var(--text3); letter-spacing: 0.5px; }
+    .footer-langs { display: flex; gap: 1rem; }
+
+    @media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { gap: 20px; }
-      section { padding: 64px 20px; }
-      .hero { padding: 100px 20px 60px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 2rem; }
+      .hero-image { order: -1; }
+      .hero h1 { font-size: 28px; }
+      .projects { padding: 1.5rem 1.5rem 3rem; }
+      .grid-4, .grid-3 { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
+  <nav id="nav"></nav>
+  <section class="hero" id="hero"></section>
+  <section class="projects" id="projects"></section>
+  <footer id="footer"></footer>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Juli<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <span class="hero-eyebrow" id="hero-role">Senior UX / Product Designer</span>
-      <h1 id="hero-headline">Designing complex systems that <em>feel simple.</em></h1>
-      <p class="hero-sub" id="hero-sub">7+ years designing enterprise products for Fortune 500 companies. I specialise in design systems, complex enrollment flows, and AI-assisted experiences.</p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">View my work</a>
-        <a href="#contact" class="btn btn-secondary">Get in touch</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work">
-    <div class="section-inner">
-      <p class="section-label">Selected Work</p>
-      <h2 class="section-title">Case Studies</h2>
-      <div class="projects-grid" id="projects-grid">
-        <div class="empty-state">
-          <div style="font-size:3rem">✦</div>
-          <p>Projects coming soon. Add your first case study via the admin panel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-inner">
-      <div class="about-grid">
-        <div>
-          <div class="about-avatar-placeholder" id="about-avatar-wrap">👋</div>
-        </div>
-        <div class="about-text">
-          <p class="section-label">About</p>
-          <h2 class="section-title" id="about-name">Juliana Rosa</h2>
-          <p class="about-bio" id="about-bio">7+ years designing enterprise products for Fortune 500 companies. I specialise in design systems, complex enrollment flows, and AI-assisted experiences — turning friction into clarity.</p>
-          <a href="#contact" class="btn btn-primary">Let's talk</a>
-          <div class="about-stats">
-            <div class="stat">
-              <div class="stat-value">7+</div>
-              <div class="stat-label">Years experience</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">F500</div>
-              <div class="stat-label">Enterprise clients</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">EN · ES · PT</div>
-              <div class="stat-label">Trilingual</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="contact-grid">
-        <div>
-          <p class="section-label">Contact</p>
-          <h2 class="section-title">Let's work together.</h2>
-          <p class="contact-intro">Open to senior / staff-level fully remote product design roles. Feel free to reach out.</p>
-          <div class="contact-links">
-            <a href="#" class="contact-link" id="contact-email-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-              <span id="contact-email-text">hello@jrosaux.com</span>
-            </a>
-            <a href="#" class="contact-link" id="contact-linkedin-link" style="display:none">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              <span>LinkedIn</span>
-            </a>
-          </div>
-        </div>
-        <div>
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label for="cf-name">Name</label>
-              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
-            </div>
-            <div class="form-group">
-              <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" placeholder="Tell me about your project or role..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send message</button>
-            <div class="form-success" id="form-success">Thanks! I'll get back to you soon.</div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p id="footer-text">© 2026 Juliana Rosa. Designed & built by me.</p>
-  </footer>
-
-  <!-- NDA MODAL -->
-  <div class="nda-overlay" id="nda-overlay">
-    <div class="nda-modal">
-      <div class="nda-icon">🔒</div>
-      <div class="nda-title">Protected case study</div>
-      <p class="nda-desc">This project is under NDA. Enter the password to view or request access.</p>
-      <div class="nda-tabs">
-        <button class="nda-tab active" onclick="switchNdaTab('password')">I have the password</button>
-        <button class="nda-tab" onclick="switchNdaTab('request')">Request access</button>
-      </div>
-      <div class="nda-panel active" id="nda-panel-password">
-        <input type="password" class="nda-input" id="nda-password-input" placeholder="Enter password" />
-        <div class="nda-error" id="nda-error">Incorrect password. Try again.</div>
-        <div class="nda-actions">
-          <button class="nda-close-btn" onclick="closeNdaModal()">Cancel</button>
-          <button class="btn btn-primary" onclick="submitNdaPassword()">Unlock</button>
-        </div>
-      </div>
-      <div class="nda-panel" id="nda-panel-request">
-        <input type="text" class="nda-input" id="nda-req-name" placeholder="Your name" />
-        <input type="email" class="nda-input" id="nda-req-email" placeholder="Your email" />
-        <input type="text" class="nda-input" id="nda-req-company" placeholder="Company / context (optional)" />
-        <div class="nda-actions">
-          <button class="nda-close-btn" onclick="closeNdaModal()">Cancel</button>
-          <button class="btn btn-primary" onclick="submitNdaRequest()">Send request</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="projectData.js"></script>
+  <script src="data.js"></script>
   <script>
-    const site = projectsData.site;
-    const projects = projectsData.projects;
-
-    // Populate site content
-    document.getElementById('hero-role').textContent = site.role || '';
-    document.getElementById('hero-headline').innerHTML = site.tagline
-      ? site.tagline.replace(/([^.!?]+[.!?]\s*)$/, '<em>$1</em>')
-      : 'Designing complex systems that <em>feel simple.</em>';
-    document.getElementById('hero-sub').textContent = site.bio || '';
-    document.getElementById('about-name').textContent = site.name || '';
-    document.getElementById('about-bio').textContent = site.bio || '';
-
-    if (site.email) {
-      document.getElementById('contact-email-link').href = 'mailto:' + site.email;
-      document.getElementById('contact-email-text').textContent = site.email;
+    function renderNav() {
+      const d = portfolioData.navigation;
+      document.getElementById('nav').innerHTML = `
+        <a href="index.html" class="nav-logo">${d.logo}</a>
+        <div class="nav-links">${d.links.map(l => `<a href="${l.url}">${l.text}</a>`).join('')}</div>`;
     }
 
-    if (site.linkedin) {
-      const ll = document.getElementById('contact-linkedin-link');
-      ll.href = site.linkedin;
-      ll.style.display = 'inline-flex';
+    function renderHero() {
+      const d = portfolioData.hero;
+      document.getElementById('hero').innerHTML = `
+        <div>
+          <div class="hero-tag">${d.tag}</div>
+          <h1>${d.headline}<br><strong>${d.headlineStrong}</strong></h1>
+          <p class="hero-sub">${d.subtitle}</p>
+          <div class="hero-cta">
+            <a href="${d.ctaPrimary.url}" class="btn btn-primary">${d.ctaPrimary.text}</a>
+            <a href="${d.ctaSecondary.url}" class="btn btn-secondary">${d.ctaSecondary.text}</a>
+          </div>
+          <div class="hero-stats">${d.stats.map(s => `<div><div class="stat-num">${s.number}</div><div class="stat-label">${s.label}</div></div>`).join('')}</div>
+        </div>
+        <div class="hero-image"><img src="${d.image}" alt="Juliana Rosa" /></div>`;
     }
 
-    if (site.avatarImage) {
-      const wrap = document.getElementById('about-avatar-wrap');
-      wrap.innerHTML = `<img src="${site.avatarImage}" alt="${site.name}" class="about-avatar" />`;
+    function renderCard(p) {
+      const thumb = p.image
+        ? `<img src="${p.image}" alt="${p.title}" />`
+        : `<div class="card-thumb-placeholder"><div class="placeholder-row"><div class="placeholder-sq"></div><div style="flex:1;display:flex;flex-direction:column;gap:6px;"><div class="placeholder-bar" style="width:80%"></div><div class="placeholder-bar" style="width:55%"></div></div></div></div>`;
+      return `<a href="${p.link || '#'}" class="card ${p.locked ? 'locked' : ''}">
+        <div class="card-thumb">${thumb}</div>
+        <div class="card-body">
+          <div class="card-date">${p.date}</div>
+          <div class="card-title">${p.title}</div>
+          <div class="card-desc">${p.description}</div>
+          ${p.metric ? `<div class="card-metric">${p.metric}</div>` : ''}
+        </div></a>`;
     }
 
-    // Render projects
-    const grid = document.getElementById('projects-grid');
-    const published = projects.filter(p => p.published !== false);
-
-    if (published.length > 0) {
-      grid.innerHTML = published.map(p => {
-        const imgHtml = p.cardImage
-          ? `<img src="${p.cardImage}" alt="${p.title}" loading="lazy" />`
-          : `<div class="card-image-placeholder">✦</div>`;
-
-        const ndaBadge = p.nda ? `<div class="nda-badge">🔒 NDA protected</div>` : '';
-
-        return `
-          <a class="project-card" href="javascript:void(0)" onclick="openProject('${p.id}', ${!!p.nda})">
-            <div class="card-image">${imgHtml}</div>
-            <div class="card-body">
-              <div class="card-category">${p.category || 'UX Design'}</div>
-              <div class="card-title">${p.title}</div>
-              <div class="card-summary">${p.cardSummary || ''}</div>
-              <div class="card-meta">
-                ${p.year ? `<span class="card-tag">${p.year}</span>` : ''}
-                ${p.role ? `<span class="card-tag">${p.role}</span>` : ''}
-              </div>
-              ${ndaBadge}
-            </div>
-          </a>`;
-      }).join('');
-    }
-
-    // Project navigation with NDA check
-    let pendingProjectId = null;
-
-    function openProject(id, isNda) {
-      if (isNda && !sessionStorage.getItem('nda_access')) {
-        pendingProjectId = id;
-        document.getElementById('nda-overlay').classList.add('active');
-        return;
+    function renderProjects() {
+      const ind = portfolioData.industrySection;
+      const aca = portfolioData.academicSection;
+      const indCols = ind.projects.length >= 4 ? 'grid-4' : 'grid-3';
+      const acaCols = aca.projects.length >= 4 ? 'grid-4' : 'grid-3';
+      let ndaHtml = '';
+      if (ind.ndaBanner && ind.ndaBanner.enabled) {
+        ndaHtml = `<div class="nda-banner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>${ind.ndaBanner.text} <a href="${ind.ndaBanner.linkUrl}">&nbsp;${ind.ndaBanner.linkText}</a></div>`;
       }
-      window.location.href = `project.html?id=${id}`;
+      document.getElementById('projects').innerHTML = `
+        <div class="divider"><div class="divider-line"></div><div class="divider-label">${ind.title}</div><div class="divider-line"></div></div>
+        ${ndaHtml}
+        <div class="project-grid ${indCols}">${ind.projects.map(renderCard).join('')}</div>
+        <div class="divider"><div class="divider-line"></div><div class="divider-label">${aca.title}</div><div class="divider-line"></div></div>
+        <div class="project-grid ${acaCols}">${aca.projects.map(renderCard).join('')}</div>`;
     }
 
-    // NDA modal
-    function switchNdaTab(tab) {
-      document.querySelectorAll('.nda-tab').forEach((t, i) => {
-        t.classList.toggle('active', (i === 0 && tab === 'password') || (i === 1 && tab === 'request'));
-      });
-      document.getElementById('nda-panel-password').classList.toggle('active', tab === 'password');
-      document.getElementById('nda-panel-request').classList.toggle('active', tab === 'request');
+    function renderFooter() {
+      const d = portfolioData.footer;
+      document.getElementById('footer').innerHTML = `<span>${d.copyright}</span><div class="footer-langs">${d.languages.map(l => `<span>${l}</span>`).join('')}</div>`;
     }
 
-    function closeNdaModal() {
-      document.getElementById('nda-overlay').classList.remove('active');
-      document.getElementById('nda-error').style.display = 'none';
-      document.getElementById('nda-password-input').value = '';
-      pendingProjectId = null;
-    }
-
-    async function hashPassword(str) {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
-
-    async function submitNdaPassword() {
-      const input = document.getElementById('nda-password-input').value;
-      const hash = await hashPassword(input);
-      if (hash === site.gdprPasswordHash) {
-        sessionStorage.setItem('nda_access', '1');
-        closeNdaModal();
-        if (pendingProjectId) window.location.href = `project.html?id=${pendingProjectId}`;
-      } else {
-        document.getElementById('nda-error').style.display = 'block';
-      }
-    }
-
-    document.getElementById('nda-password-input').addEventListener('keypress', e => {
-      if (e.key === 'Enter') submitNdaPassword();
-    });
-
-    function submitNdaRequest() {
-      const name = document.getElementById('nda-req-name').value;
-      const email = document.getElementById('nda-req-email').value;
-      if (!name || !email) return alert('Please fill in name and email.');
-      const requests = JSON.parse(localStorage.getItem('nda_requests') || '[]');
-      requests.push({ name, email, company: document.getElementById('nda-req-company').value, date: new Date().toISOString(), project: pendingProjectId });
-      localStorage.setItem('nda_requests', JSON.stringify(requests));
-      closeNdaModal();
-      alert('Request sent! You\'ll hear back soon.');
-    }
-
-    // Contact form
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formspreeId = site.formspreeId;
-      if (!formspreeId) {
-        alert('Contact form not configured. Please email directly: ' + (site.email || ''));
-        return;
-      }
-      const data = { name: document.getElementById('cf-name').value, email: document.getElementById('cf-email').value, message: document.getElementById('cf-message').value };
-      try {
-        const res = await fetch(`https://formspree.io/f/${formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
-        if (res.ok) {
-          contactForm.reset();
-          document.getElementById('form-success').style.display = 'block';
-        }
-      } catch (err) {
-        alert('Something went wrong. Please email me directly.');
-      }
-    });
+    document.addEventListener('DOMContentLoaded', () => { renderNav(); renderHero(); renderProjects(); renderFooter(); });
   </script>
 </body>
 </html>

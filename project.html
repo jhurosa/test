@@ -3,853 +3,439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study — Juliana Rosa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Project — Juliana Rosa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --c-bg: #f8f7f4;
-      --c-white: #ffffff;
-      --c-ink: #1a1a1a;
-      --c-body: #555555;
-      --c-muted: #767676;
-      --c-border: #e5e3de;
-      --c-accent: #1A5780;
-      --c-accent-light: #e8f0f6;
-      --font: 'Montserrat', sans-serif;
-      --radius: 12px;
-      --max: 780px;
+      --bg: #ffffff; --text: #1a1a1a; --text2: #555555; --text3: #767676;
+      --border: #e5e5e5; --surface: #f7f7f7;
     }
-
-    body {
-      font-family: var(--font);
-      background: var(--c-bg);
-      color: var(--c-ink);
-      line-height: 1.6;
-    }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
     /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(248,247,244,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--c-border);
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-    }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+    .nav-logo { font-size: 14px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .nav-links { display: flex; gap: 2rem; font-size: 11px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-back { font-size: 11px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
 
-    .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
+    /* BLUR for NDA */
+    #page-content.blurred { filter: blur(8px); pointer-events: none; user-select: none; }
 
-    .nav-logo span { color: var(--c-accent); }
+    /* LAYOUT */
+    .page-wrap { max-width: 1000px; margin: 0 auto; padding: 3rem; }
 
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--c-body);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    /* PROJECT HEADER */
+    .project-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .project-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin-bottom: 0.75rem; }
+    .project-title { font-size: 32px; font-weight: 300; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 0.75rem; }
+    .project-summary { font-size: 14px; line-height: 1.8; color: var(--text2); max-width: 600px; }
 
-    .nav-back:hover { color: var(--c-accent); }
-
-    /* BLUR CONTENT */
-    #page-content {
-      transition: filter 0.3s;
-    }
-
-    #page-content.blurred {
-      filter: blur(6px);
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* HERO */
-    .project-hero {
-      padding-top: 64px;
-      background: var(--c-white);
-      border-bottom: 1px solid var(--c-border);
-    }
-
-    .project-hero-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 64px 40px 48px;
-    }
-
-    .project-category {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 16px;
-    }
-
-    .project-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--c-ink);
-      margin-bottom: 20px;
-      line-height: 1.1;
-    }
-
-    .project-tagline {
-      font-size: 1.1rem;
-      color: var(--c-body);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 600px;
-    }
-
-    .project-meta {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding-top: 32px;
-      border-top: 1px solid var(--c-border);
-    }
-
+    /* META BAR */
+    .meta-bar { display: flex; gap: 2.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; flex-wrap: wrap; }
     .meta-item {}
-    .meta-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--c-muted);
-      margin-bottom: 4px;
-    }
-    .meta-value {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--c-ink);
-    }
+    .meta-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin-bottom: 4px; }
+    .meta-value { font-size: 13px; font-weight: 500; color: var(--text); }
 
-    .project-hero-image {
-      width: 100%;
-      max-height: 480px;
-      object-fit: cover;
-      display: block;
-    }
+    /* STATS */
+    .stats-row { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .stat-card { flex: 1; min-width: 120px; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1rem; text-align: center; }
+    .stat-num { font-size: 24px; font-weight: 500; letter-spacing: -0.5px; }
+    .stat-label { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.5px; }
 
-    /* SECTIONS */
-    .project-section {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 64px 40px;
-      border-bottom: 1px solid var(--c-border);
-    }
+    /* HERO IMAGE */
+    .hero-image { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 3rem; }
+    .hero-image img { width: 100%; display: block; }
 
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 12px;
-    }
+    /* SECTION */
+    .section { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+    .section-label-col { }
+    .section-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text3); padding-top: 4px; }
+    .section-content { }
+    .section-title { font-size: 16px; font-weight: 500; margin-bottom: 1rem; }
 
-    .section-heading {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--c-ink);
-      margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
+    /* RICH TEXT */
+    .rich-text { font-size: 14px; line-height: 1.85; color: var(--text2); }
+    .rich-text p { margin-bottom: 1rem; }
+    .rich-text p:last-child { margin-bottom: 0; }
+    .rich-text ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    .rich-text li { margin-bottom: 0.5rem; }
+    .rich-text h4 { font-size: 13px; font-weight: 500; color: var(--text); margin: 1.25rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .rich-text b, .rich-text strong { font-weight: 500; color: var(--text); }
 
-    .section-text {
-      font-size: 0.97rem;
-      color: var(--c-body);
-      line-height: 1.85;
-    }
+    /* SECTION IMAGE */
+    .section-img { width: 100%; border-radius: 10px; border: 1px solid var(--border); margin-top: 1.5rem; display: block; }
 
-    .section-text p { margin-bottom: 16px; }
-    .section-text p:last-child { margin-bottom: 0; }
+    /* IMAGE GALLERY (3 per section) */
+    .gallery-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin: 1.75rem 0 0.75rem; display: flex; align-items: center; gap: 8px; }
+    .gallery-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .gallery-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid.one { grid-template-columns: 1fr; }
+    .gallery-thumb { aspect-ratio: 4/3; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: transform 0.2s, border-color 0.2s; background: var(--surface); }
+    .gallery-thumb:hover { transform: scale(1.02); border-color: #aaa; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .section-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
+    /* QUOTE */
+    .quote-block { border-left: 2px solid var(--text); padding: 1rem 1.5rem; margin-top: 1.5rem; background: var(--surface); border-radius: 0 8px 8px 0; }
+    .quote-text { font-size: 14px; line-height: 1.8; font-style: italic; color: var(--text2); margin-bottom: 0.5rem; }
+    .quote-author { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; color: var(--text3); }
 
-    .section-split.reverse { direction: rtl; }
-    .section-split.reverse > * { direction: ltr; }
-
-    .section-image {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--c-border);
-      display: block;
-    }
-
-    /* METRICS */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      margin-top: 32px;
-    }
-
-    .metric-card {
-      background: var(--c-white);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-align: center;
-    }
-
-    .metric-value {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--c-accent);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .metric-label {
-      font-size: 0.8rem;
-      color: var(--c-body);
-      line-height: 1.4;
-    }
-
-    /* GALLERY */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .gallery-thumb {
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid var(--c-border);
-      cursor: pointer;
-      position: relative;
-      background: var(--c-accent-light);
-      transition: transform 0.2s;
-    }
-
-    .gallery-thumb:hover { transform: scale(1.02); }
-
-    .gallery-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.2s;
-    }
-
-    .gallery-thumb:hover img { opacity: 0.9; }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.6));
-      color: #fff;
-      font-size: 0.75rem;
-      padding: 20px 10px 8px;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .gallery-thumb:hover .gallery-caption { opacity: 1; }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.92);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox.open { display: flex; }
-
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 4px;
-      display: block;
-    }
-
-    .lightbox-close {
-      position: fixed;
-      top: 20px; right: 24px;
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
-
-    .lightbox-arrow {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      font-size: 1.4rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .lightbox-arrow:hover { background: rgba(255,255,255,0.3); }
-    .lightbox-arrow.prev { left: 20px; }
-    .lightbox-arrow.next { right: 20px; }
-
-    .lightbox-counter {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.7);
-      font-family: var(--font);
-      font-size: 0.85rem;
-    }
-
-    .lightbox-caption {
-      position: fixed;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.85);
-      font-family: var(--font);
-      font-size: 0.88rem;
-      text-align: center;
-      max-width: 600px;
-    }
-
-    /* PROTOTYPE */
-    .prototype-embed {
-      width: 100%;
-      height: 600px;
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius);
-      margin-top: 24px;
-    }
+    /* VIDEO EMBED */
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; border: 1px solid var(--border); margin-top: 1rem; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
     /* RELATED */
-    .related-section {
-      background: var(--c-white);
-      padding: 64px 40px;
-    }
+    .related { padding: 3rem 0 0; }
+    .related-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; color: var(--text3); margin-bottom: 1.25rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .related-card { border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.2s; display: block; }
+    .related-card:hover { border-color: #aaa; transform: translateY(-2px); }
+    .related-date { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
+    .related-name { font-size: 13px; font-weight: 500; }
 
-    .related-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-    }
-
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 32px;
-    }
-
-    .related-card {
-      background: var(--c-bg);
-      border: 1px solid var(--c-border);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: all 0.2s;
-    }
-
-    .related-card:hover {
-      border-color: var(--c-accent);
-      transform: translateY(-2px);
-    }
-
-    .related-card-category {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--c-accent);
-      margin-bottom: 6px;
-    }
-
-    .related-card-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--c-ink);
-    }
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.93); align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 4px; display: block; }
+    .lb-btn { position: fixed; background: rgba(255,255,255,0.12); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background 0.2s; }
+    .lb-btn:hover { background: rgba(255,255,255,0.22); }
+    .lb-close { top: 20px; right: 24px; }
+    .lb-prev { top: 50%; left: 20px; transform: translateY(-50%); }
+    .lb-next { top: 50%; right: 20px; transform: translateY(-50%); }
+    .lb-counter { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 1px; }
 
     /* NDA MODAL */
-    .nda-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-    }
-
+    .nda-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
     .nda-overlay.active { display: flex; }
-
-    .nda-modal {
-      background: var(--c-white);
-      border-radius: 16px;
-      padding: 40px;
-      max-width: 440px;
-      width: 90%;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-    }
-
-    .nda-icon { font-size: 2rem; margin-bottom: 16px; }
-    .nda-title { font-size: 1.2rem; font-weight: 700; color: var(--c-ink); margin-bottom: 8px; }
-    .nda-desc { font-size: 0.88rem; color: var(--c-body); line-height: 1.6; margin-bottom: 24px; }
-
-    .nda-tabs {
-      display: flex;
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .nda-tab {
-      flex: 1;
-      padding: 10px;
-      font-family: var(--font);
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      color: var(--c-muted);
-      transition: all 0.2s;
-    }
-
-    .nda-tab.active { background: var(--c-accent); color: #fff; }
-
+    .nda-modal { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; max-width: 420px; width: 90%; }
+    .nda-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .nda-title { font-size: 16px; font-weight: 500; margin-bottom: 0.5rem; }
+    .nda-desc { font-size: 12px; color: var(--text2); line-height: 1.7; margin-bottom: 1.5rem; }
+    .nda-tabs { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+    .nda-tab { flex: 1; padding: 9px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; background: transparent; border: none; color: var(--text3); transition: all 0.2s; }
+    .nda-tab.active { background: var(--text); color: var(--bg); }
     .nda-panel { display: none; }
     .nda-panel.active { display: block; }
-
-    .nda-input {
-      width: 100%;
-      font-family: var(--font);
-      font-size: 0.9rem;
-      padding: 12px 16px;
-      border: 1.5px solid var(--c-border);
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .nda-input:focus { outline: none; border-color: var(--c-accent); }
-    .nda-error { font-size: 0.82rem; color: #c62828; margin-bottom: 10px; display: none; }
-
-    .nda-actions { display: flex; gap: 12px; margin-top: 8px; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-family: var(--font);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      transition: all 0.2s;
-    }
-
-    .btn-primary { background: var(--c-accent); color: #fff; }
-    .btn-primary:hover { background: #154668; }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--c-body);
-      border: 1.5px solid var(--c-border);
-    }
-    .btn-outline:hover { border-color: var(--c-ink); color: var(--c-ink); }
+    .nda-input { width: 100%; font-family: 'Montserrat', sans-serif; font-size: 13px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; color: var(--text); background: var(--bg); }
+    .nda-input:focus { outline: none; border-color: var(--text); }
+    .nda-error { font-size: 11px; color: #c62828; margin-bottom: 10px; display: none; }
+    .nda-actions { display: flex; gap: 10px; margin-top: 6px; }
+    .btn { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 22px; border-radius: 24px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; border: none; }
+    .btn:hover { opacity: 0.8; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border); }
 
     /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 40px;
-      border-top: 1px solid var(--c-border);
-      font-size: 0.82rem;
-      color: var(--c-muted);
-      font-family: var(--font);
-    }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text3); letter-spacing: 0.5px; }
+    .footer-langs { display: flex; gap: 1rem; }
 
     /* NOT FOUND */
-    .not-found {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .not-found h2 { font-size: 1.5rem; margin: 16px 0 8px; color: var(--c-ink); }
-    .not-found p { color: var(--c-body); margin-bottom: 24px; }
+    .not-found { text-align: center; padding: 6rem 2rem; }
+    .not-found h2 { font-size: 20px; font-weight: 300; margin: 1rem 0 0.5rem; }
+    .not-found p { color: var(--text2); font-size: 13px; margin-bottom: 1.5rem; }
 
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .project-hero-inner { padding: 48px 20px 32px; }
-      .project-section { padding: 48px 20px; }
-      .section-split { grid-template-columns: 1fr; }
-      .section-split.reverse { direction: ltr; }
+      nav { padding: 1rem 1.5rem; }
+      .page-wrap { padding: 2rem 1.5rem; }
+      .section { grid-template-columns: 1fr; gap: 1rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .related-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">Juli<span>.</span></a>
-    <a href="index.html#work" class="nav-back">
-      ← Back to work
-    </a>
-  </nav>
-
-  <!-- NDA MODAL -->
   <div class="nda-overlay" id="nda-overlay">
     <div class="nda-modal">
       <div class="nda-icon">🔒</div>
       <div class="nda-title">Protected case study</div>
-      <p class="nda-desc">This project is under NDA. Enter the password to view or request access.</p>
+      <p class="nda-desc">This project is under NDA. Enter the password to view, or request access.</p>
       <div class="nda-tabs">
-        <button class="nda-tab active" onclick="switchTab('password')">I have the password</button>
-        <button class="nda-tab" onclick="switchTab('request')">Request access</button>
+        <button class="nda-tab active" onclick="switchTab('pw')">I have the password</button>
+        <button class="nda-tab" onclick="switchTab('req')">Request access</button>
       </div>
-      <div class="nda-panel active" id="panel-password">
+      <div class="nda-panel active" id="panel-pw">
         <input type="password" class="nda-input" id="nda-pw-input" placeholder="Enter password" />
         <div class="nda-error" id="nda-error">Incorrect password. Try again.</div>
         <div class="nda-actions">
           <button class="btn btn-outline" onclick="goBack()">← Go back</button>
-          <button class="btn btn-primary" onclick="submitPassword()">Unlock</button>
+          <button class="btn btn-primary" onclick="submitPw()">Unlock</button>
         </div>
       </div>
-      <div class="nda-panel" id="panel-request">
+      <div class="nda-panel" id="panel-req">
         <input type="text" class="nda-input" id="req-name" placeholder="Your name" />
         <input type="email" class="nda-input" id="req-email" placeholder="Your email" />
         <input type="text" class="nda-input" id="req-company" placeholder="Company / context (optional)" />
         <div class="nda-actions">
           <button class="btn btn-outline" onclick="goBack()">← Go back</button>
-          <button class="btn btn-primary" onclick="submitRequest()">Send request</button>
+          <button class="btn btn-primary" onclick="submitReq()">Send request</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE CONTENT -->
-  <div id="page-content">
-    <div id="project-container"></div>
+  <nav>
+    <a href="index.html" class="nav-logo" id="nav-logo">JR</a>
+    <a href="index.html#projects" class="nav-back">← All work</a>
+  </nav>
 
-    <!-- LIGHTBOX -->
+  <div id="page-content">
+    <div class="page-wrap" id="project-content"></div>
+
     <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-      <button class="lightbox-arrow prev" onclick="prevImage()">&#8592;</button>
-      <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-      <button class="lightbox-arrow next" onclick="nextImage()">&#8594;</button>
-      <div class="lightbox-caption" id="lightbox-caption"></div>
-      <div class="lightbox-counter" id="lightbox-counter"></div>
+      <button class="lb-btn lb-close" onclick="closeLb()">✕</button>
+      <button class="lb-btn lb-prev" onclick="prevImg()">←</button>
+      <img class="lb-img" id="lb-img" src="" alt="" />
+      <button class="lb-btn lb-next" onclick="nextImg()">→</button>
+      <div class="lb-counter" id="lb-counter"></div>
     </div>
 
-    <footer>
-      <p>© 2026 Juliana Rosa</p>
-    </footer>
+    <footer id="footer"></footer>
   </div>
 
-  <script src="projectData.js"></script>
+  <script src="data.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const projectId = params.get('id');
-    const project = projectsData.projects.find(p => p.id === projectId);
-    const site = projectsData.site;
-    const container = document.getElementById('project-container');
+    const pid = params.get('id');
+    const project = portfolioData.projectPages && portfolioData.projectPages[pid];
+    const nav = portfolioData.navigation;
+    const footer = portfolioData.footer;
+
+    // Nav logo
+    document.getElementById('nav-logo').textContent = nav.logo;
+
+    // Footer
+    document.getElementById('footer').innerHTML = `<span>${footer.copyright}</span><div class="footer-langs">${footer.languages.map(l => `<span>${l}</span>`).join('')}</div>`;
+
+    // NDA check
+    const isLocked = portfolioData.industrySection.projects.concat(portfolioData.academicSection.projects).find(p => p.id === pid)?.locked;
+    if (isLocked && !sessionStorage.getItem('nda_access')) {
+      document.getElementById('page-content').classList.add('blurred');
+      document.getElementById('nda-overlay').classList.add('active');
+    }
 
     if (!project) {
-      container.innerHTML = `
-        <div class="not-found" style="padding-top:64px">
-          <div style="font-size:3rem">🔍</div>
-          <h2>Project not found</h2>
-          <p>This case study doesn't exist or may have moved.</p>
-          <a href="index.html" class="btn btn-primary">Back to portfolio</a>
-        </div>`;
+      document.getElementById('project-content').innerHTML = `<div class="not-found"><div style="font-size:2rem">🔍</div><h2>Project not found</h2><p>This case study doesn't exist or may have moved.</p><a href="index.html" class="btn btn-primary">Back to work</a></div>`;
     } else {
       document.title = `${project.title} — Juliana Rosa`;
-
-      // NDA check
-      if (project.nda && !sessionStorage.getItem('nda_access')) {
-        document.getElementById('page-content').classList.add('blurred');
-        document.getElementById('nda-overlay').classList.add('active');
-      }
-
       renderProject(project);
     }
 
-    function renderProject(p) {
-      const sec = p.sections || {};
-      let html = '';
-
-      // HERO
-      html += `
-        <div class="project-hero">
-          <div class="project-hero-inner">
-            <div class="project-category">${p.category || 'UX Design'}</div>
-            <h1 class="project-title">${p.title}</h1>
-            ${sec.overview?.tagline ? `<p class="project-tagline">${sec.overview.tagline}</p>` : ''}
-            <div class="project-meta">
-              ${p.role ? `<div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">${p.role}</div></div>` : ''}
-              ${p.duration ? `<div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">${p.duration}</div></div>` : ''}
-              ${p.year ? `<div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">${p.year}</div></div>` : ''}
-              ${p.tools ? `<div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">${p.tools}</div></div>` : ''}
-            </div>
-          </div>
-          ${p.cardImage ? `<img class="project-hero-image" src="${p.cardImage}" alt="${p.title}" />` : ''}
+    function galleryHtml(images, galleryKey) {
+      if (!images || images.length === 0) return '';
+      const cols = images.length === 1 ? 'one' : images.length === 2 ? 'two' : '';
+      return `
+        <div class="gallery-label">Screens</div>
+        <div class="gallery-grid ${cols}">
+          ${images.map((img, i) => `<div class="gallery-thumb" onclick="openLb('${galleryKey}', ${i})"><img src="${img.url || img}" alt="${img.caption || ''}" loading="lazy" /></div>`).join('')}
         </div>`;
-
-      // OVERVIEW
-      if (sec.overview?.enabled !== false && sec.overview?.text) {
-        const hasImage = sec.overview.image;
-        html += `<div class="project-section">`;
-        if (hasImage) {
-          html += `<div class="section-split">
-            <div>
-              <div class="section-label">Overview</div>
-              <div class="section-text">${formatText(sec.overview.text)}</div>
-            </div>
-            <img src="${sec.overview.image}" alt="Overview" class="section-image" />
-          </div>`;
-        } else {
-          html += `<div class="section-label">Overview</div>
-            <div class="section-text">${formatText(sec.overview.text)}</div>`;
-        }
-        html += `</div>`;
-      }
-
-      // CHALLENGE
-      if (sec.challenge?.enabled !== false && sec.challenge?.text) {
-        const hasImage = sec.challenge.image;
-        html += `<div class="project-section" style="background:var(--c-white)">`;
-        if (hasImage) {
-          html += `<div class="section-split reverse">
-            <div>
-              <div class="section-label">Challenge</div>
-              ${sec.challenge.title ? `<h2 class="section-heading">${sec.challenge.title}</h2>` : ''}
-              <div class="section-text">${formatText(sec.challenge.text)}</div>
-            </div>
-            <img src="${sec.challenge.image}" alt="Challenge" class="section-image" />
-          </div>`;
-        } else {
-          html += `<div class="section-label">Challenge</div>
-            ${sec.challenge.title ? `<h2 class="section-heading">${sec.challenge.title}</h2>` : ''}
-            <div class="section-text">${formatText(sec.challenge.text)}</div>`;
-        }
-        html += `</div>`;
-      }
-
-      // SOLUTION
-      if (sec.solution?.enabled !== false && sec.solution?.text) {
-        const hasImage = sec.solution.image;
-        html += `<div class="project-section">`;
-        if (hasImage) {
-          html += `<div class="section-split">
-            <div>
-              <div class="section-label">Solution</div>
-              ${sec.solution.title ? `<h2 class="section-heading">${sec.solution.title}</h2>` : ''}
-              <div class="section-text">${formatText(sec.solution.text)}</div>
-            </div>
-            <img src="${sec.solution.image}" alt="Solution" class="section-image" />
-          </div>`;
-        } else {
-          html += `<div class="section-label">Solution</div>
-            ${sec.solution.title ? `<h2 class="section-heading">${sec.solution.title}</h2>` : ''}
-            <div class="section-text">${formatText(sec.solution.text)}</div>`;
-        }
-        html += `</div>`;
-      }
-
-      // GALLERY
-      if (sec.gallery?.enabled && sec.gallery?.images?.length > 0) {
-        html += `<div class="project-section" style="background:var(--c-white)">
-          <div class="section-label">Gallery</div>
-          <h2 class="section-heading">Screens & Deliverables</h2>
-          <div class="gallery-grid" id="gallery-grid">`;
-        sec.gallery.images.forEach((img, i) => {
-          html += `
-            <div class="gallery-thumb" onclick="openLightbox(${i})">
-              <img src="${img.url}" alt="${img.caption || 'Screen ' + (i+1)}" loading="lazy" />
-              ${img.caption ? `<div class="gallery-caption">${img.caption}</div>` : ''}
-            </div>`;
-        });
-        html += `</div></div>`;
-      }
-
-      // RESULTS
-      if (sec.results?.enabled !== false && sec.results?.text) {
-        html += `<div class="project-section">
-          <div class="section-label">Results</div>
-          <div class="section-text">${formatText(sec.results.text)}</div>`;
-        if (sec.results.metrics?.length > 0) {
-          html += `<div class="metrics-grid">`;
-          sec.results.metrics.forEach(m => {
-            html += `<div class="metric-card">
-              <div class="metric-value">${m.value}</div>
-              <div class="metric-label">${m.label}</div>
-            </div>`;
-          });
-          html += `</div>`;
-        }
-        html += `</div>`;
-      }
-
-      // PROTOTYPE
-      if (sec.prototype?.enabled && sec.prototype?.url) {
-        html += `<div class="project-section" style="background:var(--c-white)">
-          <div class="section-label">Prototype</div>
-          <h2 class="section-heading">Interactive Prototype</h2>
-          <iframe class="prototype-embed" src="${sec.prototype.url}" allowfullscreen></iframe>
-        </div>`;
-      }
-
-      // RELATED
-      const others = projectsData.projects.filter(p2 => p2.id !== p.id && p2.published !== false).slice(0, 3);
-      if (others.length > 0) {
-        html += `<div class="related-section">
-          <div class="related-inner">
-            <div class="section-label">More work</div>
-            <h2 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.02em;color:var(--c-ink);margin-bottom:0">Other case studies</h2>
-            <div class="related-grid">`;
-        others.forEach(r => {
-          html += `<a href="project.html?id=${r.id}" class="related-card">
-            <div class="related-card-category">${r.category || 'UX Design'}</div>
-            <div class="related-card-title">${r.title}</div>
-          </a>`;
-        });
-        html += `</div></div></div>`;
-      }
-
-      container.innerHTML = html;
     }
 
-    function formatText(text) {
-      if (!text) return '';
-      return text.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+    function renderProject(p) {
+      const s = p.sections || {};
+      let html = '';
+
+      // Header
+      html += `<div class="project-header">
+        <div class="project-tag">${p.role || 'UX Design'} · ${p.timeline || ''}</div>
+        <h1 class="project-title">${p.title}</h1>
+        <p class="project-summary">${p.summary || ''}</p>
+      </div>`;
+
+      // Meta
+      const metas = [
+        p.role && { label: 'Role', value: p.role },
+        p.timeline && { label: 'Timeline', value: p.timeline },
+        p.team && { label: 'Team', value: p.team },
+        p.tools && { label: 'Tools', value: p.tools }
+      ].filter(Boolean);
+      if (metas.length) {
+        html += `<div class="meta-bar">${metas.map(m => `<div class="meta-item"><div class="meta-label">${m.label}</div><div class="meta-value">${m.value}</div></div>`).join('')}</div>`;
+      }
+
+      // Stats
+      if (p.stats && p.stats.length) {
+        html += `<div class="stats-row">${p.stats.map(st => `<div class="stat-card"><div class="stat-num">${st.number}</div><div class="stat-label">${st.label}</div></div>`).join('')}</div>`;
+      }
+
+      // Hero image
+      if (p.heroImage) {
+        html += `<div class="hero-image"><img src="${p.heroImage}" alt="${p.title}" /></div>`;
+      }
+
+      // Overview
+      if (s.overview && s.overview.enabled !== false && s.overview.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">${s.overview.tagline || 'Overview'}</div></div>
+          <div class="section-content"><div class="rich-text">${s.overview.content}</div></div>
+        </div>`;
+      }
+
+      // Contribution
+      if (s.contribution && s.contribution.enabled && s.contribution.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">My contribution</div></div>
+          <div class="section-content"><div class="rich-text">${s.contribution.content}</div></div>
+        </div>`;
+      }
+
+      // Challenge
+      if (s.challenge && s.challenge.enabled && s.challenge.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">The Challenge</div></div>
+          <div class="section-content">
+            ${s.challenge.title ? `<div class="section-title">${s.challenge.title}</div>` : ''}
+            <div class="rich-text">${s.challenge.content}</div>
+            ${s.challenge.image ? `<img src="${s.challenge.image}" class="section-img" alt="Challenge" />` : ''}
+          </div>
+        </div>`;
+      }
+
+      // Problem + gallery
+      if (s.problem && s.problem.enabled && s.problem.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">Problem to Solve</div></div>
+          <div class="section-content">
+            ${s.problem.title ? `<div class="section-title">${s.problem.title}</div>` : ''}
+            <div class="rich-text">${s.problem.content}</div>
+            ${galleryHtml(s.problem.images, 'problem')}
+          </div>
+        </div>`;
+      }
+
+      // Strategy + gallery
+      if (s.strategy && s.strategy.enabled && s.strategy.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">UX Strategy</div></div>
+          <div class="section-content">
+            ${s.strategy.title ? `<div class="section-title">${s.strategy.title}</div>` : ''}
+            <div class="rich-text">${s.strategy.content}</div>
+            ${s.strategy.image ? `<img src="${s.strategy.image}" class="section-img" alt="Strategy" />` : ''}
+            ${galleryHtml(s.strategy.images, 'strategy')}
+          </div>
+        </div>`;
+      }
+
+      // Solution + gallery
+      if (s.solution && s.solution.enabled && s.solution.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">The Solution</div></div>
+          <div class="section-content">
+            ${s.solution.title ? `<div class="section-title">${s.solution.title}</div>` : ''}
+            <div class="rich-text">${s.solution.content}</div>
+            ${galleryHtml(s.solution.images, 'solution')}
+          </div>
+        </div>`;
+      }
+
+      // Prototype
+      if (s.prototype && s.prototype.enabled && s.prototype.videoUrl) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">Prototype</div></div>
+          <div class="section-content">
+            ${s.prototype.title ? `<div class="section-title">${s.prototype.title}</div>` : ''}
+            <div class="video-wrap"><iframe src="${s.prototype.videoUrl}" frameborder="0" allowfullscreen></iframe></div>
+          </div>
+        </div>`;
+      }
+
+      // Results
+      if (s.results && s.results.enabled && s.results.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">Results</div></div>
+          <div class="section-content">
+            ${s.results.title ? `<div class="section-title">${s.results.title}</div>` : ''}
+            <div class="rich-text">${s.results.content}</div>
+            ${s.results.quote ? `<div class="quote-block"><div class="quote-text">"${s.results.quote}"</div>${s.results.quoteAuthor ? `<div class="quote-author">— ${s.results.quoteAuthor}</div>` : ''}</div>` : ''}
+          </div>
+        </div>`;
+      }
+
+      // Impact
+      if (s.impact && s.impact.enabled && s.impact.content) {
+        html += `<div class="section">
+          <div class="section-label-col"><div class="section-tag">The Impact</div></div>
+          <div class="section-content">
+            ${s.impact.title ? `<div class="section-title">${s.impact.title}</div>` : ''}
+            <div class="rich-text">${s.impact.content}</div>
+          </div>
+        </div>`;
+      }
+
+      // Related
+      const allProjects = [...(portfolioData.industrySection.projects || []), ...(portfolioData.academicSection.projects || [])];
+      const related = allProjects.filter(rp => rp.id !== pid).slice(0, 3);
+      if (related.length) {
+        html += `<div class="related">
+          <div class="related-title">More work</div>
+          <div class="related-grid">${related.map(rp => `<a href="project.html?id=${rp.id}" class="related-card"><div class="related-date">${rp.date}</div><div class="related-name">${rp.title}</div></a>`).join('')}
+          </div></div>`;
+      }
+
+      document.getElementById('project-content').innerHTML = html;
     }
 
     // LIGHTBOX
-    let currentIndex = 0;
-    let galleryImages = [];
+    let lbImages = [];
+    let lbIndex = 0;
 
-    function getGalleryImages() {
-      if (!project) return [];
-      return project.sections?.gallery?.images || [];
-    }
-
-    function openLightbox(index) {
-      galleryImages = getGalleryImages();
-      currentIndex = index;
-      updateLightbox();
+    function openLb(key, index) {
+      const s = project && project.sections;
+      if (!s) return;
+      const imgArr = s[key] && s[key].images ? s[key].images : [];
+      lbImages = imgArr;
+      lbIndex = index;
+      updateLb();
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeLightbox() {
+    function closeLb() {
       document.getElementById('lightbox').classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    function updateLightbox() {
-      const img = galleryImages[currentIndex];
-      document.getElementById('lightbox-img').src = img.url;
-      document.getElementById('lightbox-img').alt = img.caption || '';
-      document.getElementById('lightbox-caption').textContent = img.caption || '';
-      document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    function updateLb() {
+      const img = lbImages[lbIndex];
+      const src = img && (img.url || img);
+      document.getElementById('lb-img').src = src || '';
+      document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
     }
 
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateLightbox();
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      updateLightbox();
-    }
+    function prevImg() { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; updateLb(); }
+    function nextImg() { lbIndex = (lbIndex + 1) % lbImages.length; updateLb(); }
 
     document.addEventListener('keydown', e => {
-      const lb = document.getElementById('lightbox');
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'ArrowRight') nextImage();
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') prevImg();
+      if (e.key === 'ArrowRight') nextImg();
     });
-
-    document.getElementById('lightbox').addEventListener('click', e => {
-      if (e.target === document.getElementById('lightbox')) closeLightbox();
-    });
+    document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLb(); });
 
     // NDA
-    function switchTab(tab) {
-      document.querySelectorAll('.nda-tab').forEach((t, i) => {
-        t.classList.toggle('active', (tab === 'password' && i === 0) || (tab === 'request' && i === 1));
-      });
-      document.getElementById('panel-password').classList.toggle('active', tab === 'password');
-      document.getElementById('panel-request').classList.toggle('active', tab === 'request');
+    function switchTab(t) {
+      document.querySelectorAll('.nda-tab').forEach((tab, i) => tab.classList.toggle('active', (t === 'pw' && i === 0) || (t === 'req' && i === 1)));
+      document.getElementById('panel-pw').classList.toggle('active', t === 'pw');
+      document.getElementById('panel-req').classList.toggle('active', t === 'req');
     }
-
     function goBack() { window.location.href = 'index.html'; }
-
-    async function hashStr(str) {
+    async function sha256(str) {
       const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
       return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
-
-    async function submitPassword() {
-      const input = document.getElementById('nda-pw-input').value;
-      const hash = await hashStr(input);
-      if (hash === site.gdprPasswordHash) {
+    async function submitPw() {
+      const pw = document.getElementById('nda-pw-input').value;
+      const hash = await sha256(pw);
+      // Accept if hash matches stored hash, or if no hash stored, accept 'portfolio2026' as default
+      const storedHash = portfolioData.ndaPasswordHash || '';
+      const defaultOk = !storedHash && pw === 'portfolio2026';
+      if (defaultOk || (storedHash && hash === storedHash)) {
         sessionStorage.setItem('nda_access', '1');
         document.getElementById('nda-overlay').classList.remove('active');
         document.getElementById('page-content').classList.remove('blurred');
@@ -857,19 +443,15 @@
         document.getElementById('nda-error').style.display = 'block';
       }
     }
-
-    document.getElementById('nda-pw-input')?.addEventListener('keypress', e => {
-      if (e.key === 'Enter') submitPassword();
-    });
-
-    function submitRequest() {
+    document.getElementById('nda-pw-input').addEventListener('keypress', e => { if (e.key === 'Enter') submitPw(); });
+    function submitReq() {
       const name = document.getElementById('req-name').value;
       const email = document.getElementById('req-email').value;
-      if (!name || !email) return alert('Please fill in name and email.');
+      if (!name || !email) { alert('Please fill in name and email.'); return; }
       const reqs = JSON.parse(localStorage.getItem('nda_requests') || '[]');
-      reqs.push({ name, email, company: document.getElementById('req-company').value, project: projectId, date: new Date().toISOString() });
+      reqs.push({ name, email, company: document.getElementById('req-company').value, project: pid, date: new Date().toISOString() });
       localStorage.setItem('nda_requests', JSON.stringify(reqs));
-      alert('Request sent! You\'ll hear back soon.');
+      alert("Request received! You'll hear back soon.");
       goBack();
     }
   </script>

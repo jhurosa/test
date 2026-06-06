@@ -357,7 +357,7 @@ const portfolioData = {
       }
     },
     "proj-1780697392365": {
-      "title": "New Project",
+      "title": "Stripe Market Expansion Guidance",
       "summary": "A self-initiated concept exploring a gap in Stripe's merchant expansion experience: <strong>a guided Dashboard flow connecting payment method selection, tax compliance, and checkout </strong>localization for businesses going live in Ireland and Brazil.\n",
       "role": "UX Designer",
       "timeline": "2026",

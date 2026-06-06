@@ -117,7 +117,7 @@ const portfolioData = {
       {
         "id": "proj-1780697392365",
         "date": "2026",
-        "title": "Stripe Market Expansion Guidance ",
+        "title": "Stripe Market Expansion Guidance",
         "description": "Speculative product design exercise targeting a gap in Stripe's merchant expansion experience",
         "metric": "",
         "image": "img/latest/cover.jpeg",
@@ -404,7 +404,7 @@ const portfolioData = {
           "enabled": true,
           "title": "",
           "content": "<p><strong>Market-specific, not generic</strong></p>\n<p>The flow doesn't show a generic list of all Stripe capabilities. It shows what's relevant and high-impact for the selected market. A seller expanding to Brazil sees PIX adoption data and CPF field requirements. A seller expanding to Ireland sees SEPA setup and VAT thresholds. The specificity is the value.</p>\n\n<p><strong>Progressive disclosure</strong></p>\n<p>Each step only surfaces what the selected market requires. Complexity scales to the market, in a way that Brazil surfaces more compliance context than Ireland because the reality of expanding to Brazil requires it.</p>\n\n<p><strong>Non-blocking but persistent</strong></p>\n<p>Sellers can skip steps and return later. Incomplete items surface as a persistent reminder in the Dashboard rather than a hard blocker, respecting sellers' autonomy while keeping compliance visible.</p>\n\n<p><strong>Honest about limits</strong></p>\n<p>For high-complexity situations like Brazilian tax, the flow explicitly acknowledges where Stripe's tooling ends and where a local expert may be needed. That honesty is a design decision, and it builds trust rather than overpromising.</p>",
-          "image": "img/latest/Stripe/images/suggestion-1.png",
+          "image": "img/latest/Stripe/images/side-by-side.png",
           "images": []
         },
         "solution": {

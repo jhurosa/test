@@ -395,7 +395,7 @@ const portfolioData = {
               "caption": "Stripe Tax"
             },
             {
-              "url": "[object Object]img/latest/Stripe/images/current-3-check-out-config.png",
+              "url": "img/latest/Stripe/images/current-3-check-out-config.png",
               "caption": "Check out Config"
             }
           ]
@@ -404,14 +404,47 @@ const portfolioData = {
           "enabled": true,
           "title": "",
           "content": "<p><strong>Market-specific, not generic</strong></p>\n<p>The flow doesn't show a generic list of all Stripe capabilities. It shows what's relevant and high-impact for the selected market. A seller expanding to Brazil sees PIX adoption data and CPF field requirements. A seller expanding to Ireland sees SEPA setup and VAT thresholds. The specificity is the value.</p>\n\n<p><strong>Progressive disclosure</strong></p>\n<p>Each step only surfaces what the selected market requires. Complexity scales to the market, in a way that Brazil surfaces more compliance context than Ireland because the reality of expanding to Brazil requires it.</p>\n\n<p><strong>Non-blocking but persistent</strong></p>\n<p>Sellers can skip steps and return later. Incomplete items surface as a persistent reminder in the Dashboard rather than a hard blocker, respecting sellers' autonomy while keeping compliance visible.</p>\n\n<p><strong>Honest about limits</strong></p>\n<p>For high-complexity situations like Brazilian tax, the flow explicitly acknowledges where Stripe's tooling ends and where a local expert may be needed. That honesty is a design decision, and it builds trust rather than overpromising.</p>",
-          "image": "",
+          "image": "img/latest/Stripe/images/suggestion-1.png",
           "images": []
         },
         "solution": {
           "enabled": true,
           "title": "",
           "content": "<p><strong>Design Approach</strong></p>\n<p>I designed a three-step guided flow triggered when a seller selects a new target market in their Dashboard. The flow surfaces the right decisions at the right moment, without requiring sellers to know in advance what questions to ask.</p>\n\n<p><strong>Step 1: Market and Payment Method Selection</strong></p>\n<p>The merchant selects their target market. For Ireland, the flow surfaces SEPA Direct Debit as the primary recommendation for subscription customers, alongside card. For Brazil, it surfaces PIX as the dominant method with adoption data, followed by Boleto for broader consumer reach. Each method links directly to setup; no context switching to Docs required.</p>\n\n<p><strong>Step 2: Tax and Compliance Check</strong></p>\n<p>For Ireland, the flow surfaces Irish VAT registration requirements and prompts Stripe Tax configuration. For Brazil, it flags the layered tax obligations and surfaces Stripe Tax alongside a clear acknowledgement that Brazilian compliance may require additional local tooling or an accountant—an honest framing that protects the merchant and Stripe's credibility. The goal isn't to be a tax advisor. It's to ensure the seller has been prompted before going live.</p>\n\n<p><strong>Step 3: Checkout Localization Preview</strong></p>\n<p>The seller previews how their checkout will appear to customers in the target market, language, currency, and payment method display. For Brazil, the preview defaults to Portuguese and BRL. For Ireland, it confirms EUR and surfaces SEPA as a visible payment option. Sellers can adjust inline before publishing.</p>",
-          "images": []
+          "images": [
+            {
+              "url": "img/latest/Stripe/images/suggestion-2.png",
+              "caption": "Expand to Ireland"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-3.png",
+              "caption": "Ireland Tax "
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-4.png",
+              "caption": "Ireland Check out"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-6.png",
+              "caption": "One Market Added"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-7.png",
+              "caption": "Expand to Brazil"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-8.png",
+              "caption": "Brazil Tax"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-9.png",
+              "caption": "Brazil Check out"
+            },
+            {
+              "url": "img/latest/Stripe/images/suggestion-10.png",
+              "caption": "2 Markets Added"
+            }
+          ]
         },
         "prototype": {
           "enabled": false,

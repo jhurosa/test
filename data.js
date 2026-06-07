@@ -1,6 +1,6 @@
 const portfolioData = {
   "navigation": {
-    "logo": "Juli Rosa",
+    "logo": "Juliana Rosa",
     "links": [
       {
         "text": "Home",
@@ -55,9 +55,9 @@ const portfolioData = {
   },
   "about": {
     "tag": "About me",
-    "headline": "Designer, researcher,",
+    "headline": "User experience designer,",
     "headlineStrong": "problem solver.",
-    "bio1": "I'm a Senior UX / Product Designer with 7+ years of experience designing enterprise-scale digital products for Fortune 500 companies. I hold a Master's in UX and have led design systems, AI-driven research initiatives, and cross-functional product design at Unum.",
+    "bio1": "I'm a UX / Product Designer with 7+ years of experience designing enterprise-scale digital products for Fortune 500 companies. I hold a Master's in UX and have led design systems, AI-driven research initiatives, and cross-functional product design at Unum.",
     "bio2": "I believe great design isn't just about aesthetics — it's about reducing cognitive load, building trust, and creating systems that scale. My work sits at the intersection of strategic thinking and pixel-level craft.",
     "image": "https://cdn.prod.website-files.com/60a52b953cdc7e6337817f11/69c6b774d14a0b497cad77cb_IMG_3450-2.jpg",
     "skills": [
@@ -99,16 +99,16 @@ const portfolioData = {
     "tag": "Contact",
     "headline": "Let's work",
     "headlineStrong": "together.",
-    "subtitle": "Open to senior / staff-level fully remote product design roles. Based in Dublin, Ireland.",
+    "subtitle": "Open to fully remote or hybrid product design roles. Based in Ireland.",
     "email": "hello@jrosaux.com",
-    "linkedin": "",
+    "linkedin": "https://www.linkedin.com/in/jrosaux/",
     "formspreeId": "",
-    "availability": "Available for remote roles · Dublin, Ireland"
+    "availability": "Available for remote and hybrid roles · Ireland"
   },
   "industrySection": {
     "title": "Industry work · 2021–2026",
     "ndaBanner": {
-      "enabled": true,
+      "enabled": false,
       "text": "These case studies are under NDA. To access the full work,",
       "linkText": "request the password",
       "linkUrl": "mailto:hello@jrosaux.com"
@@ -404,8 +404,17 @@ const portfolioData = {
           "enabled": true,
           "title": "",
           "content": "<p><strong>Market-specific, not generic</strong></p>\n<p>The flow doesn't show a generic list of all Stripe capabilities. It shows what's relevant and high-impact for the selected market. A seller expanding to Brazil sees PIX adoption data and CPF field requirements. A seller expanding to Ireland sees SEPA setup and VAT thresholds. The specificity is the value.</p>\n\n<p><strong>Progressive disclosure</strong></p>\n<p>Each step only surfaces what the selected market requires. Complexity scales to the market, in a way that Brazil surfaces more compliance context than Ireland because the reality of expanding to Brazil requires it.</p>\n\n<p><strong>Non-blocking but persistent</strong></p>\n<p>Sellers can skip steps and return later. Incomplete items surface as a persistent reminder in the Dashboard rather than a hard blocker, respecting sellers' autonomy while keeping compliance visible.</p>\n\n<p><strong>Honest about limits</strong></p>\n<p>For high-complexity situations like Brazilian tax, the flow explicitly acknowledges where Stripe's tooling ends and where a local expert may be needed. That honesty is a design decision, and it builds trust rather than overpromising.</p>",
-          "image": "img/latest/Stripe/images/side-by-side.png",
-          "images": []
+          "image": "",
+          "images": [
+            {
+              "url": "img/latest/Stripe/images/side-by-side.png",
+              "caption": "Side by Side"
+            },
+            {
+              "url": "",
+              "caption": ""
+            }
+          ]
         },
         "solution": {
           "enabled": true,

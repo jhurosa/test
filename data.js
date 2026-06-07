@@ -123,6 +123,16 @@ const portfolioData = {
         "image": "img/latest/cover.jpeg",
         "link": "project.html?id=proj-1780697392365",
         "locked": false
+      },
+      {
+        "id": "proj-1780826710054",
+        "date": "2026",
+        "title": "Design System",
+        "description": "Led the design system that unified HR products across 35+ ux designers — starting with a 6-month business case to get it funded.",
+        "metric": "- 40% reduction in design time",
+        "image": "img/latest/DS/ds-card-cover.png",
+        "link": "project.html?id=proj-1780826710054",
+        "locked": false
       }
     ]
   },
@@ -471,6 +481,78 @@ const portfolioData = {
           "enabled": true,
           "title": "The Impact",
           "content": "<p><strong>What This Explores</strong></p>\n<p>This concept addresses a real gap between Stripe's product capabilities and the merchant expansion experience. Stripe supports both Ireland and Brazil—but going live in either market without guidance leads to predictable failures: <strong>wrong payment methods, missed tax obligations, and checkout experiences that don't match local expectations.</strong></p>\n<p><em>The design hypothesis: a guided expansion flow connecting payment method selection, tax compliance, and checkout localization would reduce time-to-live in new markets, reduce support contacts around setup questions, and improve conversion by increasing checkout localization rates.</em></p>\n\n<p><strong>Conclusion</strong></p>\n<p>Stripe has the infrastructure to support businesses expanding into Ireland and Brazil.  <strong>The gap isn't capability, it's guidance.</strong> Payment methods, tax compliance, and checkout localization are three decisions that belong together, and right now sellers have to connect those dots themselves.</p>\n\n<p>The core design tension in this project was between comprehensiveness and confidence. Brazil in particular has enough complexity that a fully accurate compliance guide would overwhelm any seller. The challenge was figuring out what level of detail creates confidence without creating paralysis — and where to draw the line between in-product guidance and \"please talk to a professional.\"</p>\n\n<p>That tension isn't unique to payments. It's the same problem I worked through designing benefits enrollment flows at my current job — how do you help someone make a high-stakes decision without overwhelming them or pretending the product knows more than it does? The domain changes. The design problem doesn't.</p>"
+        }
+      }
+    },
+    "proj-1780826710054": {
+      "title": "New Project",
+      "summary": "A unified, multi-platform design system for Compass HR's employee benefits administration platform. Built across desktop, mobile, and tablet — covering 50+ components, 12 products, and 35+ designers and developers. The harder challenge wasn't building the system. It was convincing a 150-year-old company to fund it.",
+      "role": "UX Designer System Lead",
+      "timeline": "2023-2025",
+      "team": "3 UX designer, 1 accessibility expert, 4 developers",
+      "tools": "Figma",
+      "heroImage": "img/latest/DS/ds-hero.png",
+      "stats": [
+        {
+          "number": "35+ ",
+          "label": "UX designers trained"
+        },
+        {
+          "number": "85%",
+          "label": "UX adoption and acceptance"
+        }
+      ],
+      "sections": {
+        "overview": {
+          "enabled": true,
+          "tagline": "",
+          "content": ""
+        },
+        "contribution": {
+          "enabled": false,
+          "content": ""
+        },
+        "challenge": {
+          "enabled": false,
+          "title": "The Challenge",
+          "content": "",
+          "image": ""
+        },
+        "problem": {
+          "enabled": false,
+          "title": "Problem to Solve",
+          "content": "",
+          "images": []
+        },
+        "strategy": {
+          "enabled": false,
+          "title": "UX Strategy",
+          "content": "",
+          "image": "",
+          "images": []
+        },
+        "solution": {
+          "enabled": false,
+          "title": "The Solution",
+          "content": "",
+          "images": []
+        },
+        "prototype": {
+          "enabled": false,
+          "title": "Prototype",
+          "videoUrl": ""
+        },
+        "results": {
+          "enabled": false,
+          "title": "Results & Impact",
+          "content": "",
+          "quote": "",
+          "quoteAuthor": ""
+        },
+        "impact": {
+          "enabled": false,
+          "title": "The Impact",
+          "content": ""
         }
       }
     }

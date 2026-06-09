@@ -138,7 +138,7 @@ const portfolioData = {
         "id": "proj-1781007763207",
         "date": "2026",
         "title": "Vantage Life",
-        "description": "Redesigning a legacy insurance enrollment flow — from 2003-era form based to a guided, AI-assisted experience built around user decisions.",
+        "description": "Redesigning a legacy insurance enrollment from 2003-era form based to a guided, AI-assisted experience built around user decisions.",
         "metric": "",
         "image": "",
         "link": "project.html?id=proj-1781007763207",
@@ -568,22 +568,22 @@ const portfolioData = {
     },
     "proj-1781007763207": {
       "title": "New Project",
-      "summary": "A self-initiated concept redesigning a legacy employee benefits enrollment experience — simplifying a 6-step insurance enrollment flow through progressive disclosure, contextual AI guidance, and a unified decision architecture that connects benefit selection, dependent coverage, beneficiary designation, and cost review into one coherent experience.",
+      "summary": "A self-initiated concept redesigning a legacy employee benefits enrollment experience, simplifying a 6-step insurance enrollment flow through progressive disclosure, contextual AI guidance, and a unified decision architecture that connects benefit selection, dependent coverage, beneficiary designation, and cost review into one coherent experience.",
       "role": "UX designer",
       "timeline": "6 months",
       "team": "",
       "tools": "Figma",
-      "heroImage": "",
+      "heroImage": "test/img/latest/vantage-life /card-cover.jpeg",
       "stats": [],
       "sections": {
         "overview": {
           "enabled": true,
           "tagline": "",
-          "content": "<p>A conceptual B2C life insurance enrollment experience — designed to explore how complex insurance decisions can be simplified through progressive disclosure, contextual AI guidance, and a multi-step flow that respects user autonomy at every stage.</p>"
+          "content": "<p>A conceptual B2C life insurance enrollment experience, designed to explore how complex insurance decisions can be simplified through progressive disclosure, contextual AI guidance, and a multi-step flow that respects user autonomy at every stage.</p>"
         },
         "contribution": {
           "enabled": true,
-          "content": "<p>This was a self-initiated conceptual project. I owned the end-to-end design — from flow architecture to high-fidelity screens.</p>\n\n<p><strong>Responsibilities included: </strong> defining the enrollment flow structure, designing all screens across plan selection, who's covered, preliminary information, coverage review, beneficiary setup, enrollment summary, and confirm & submit, integrating a contextual AI assistant layer across the flow, and writing all UX copy.</p>"
+          "content": "<p>This was a self-initiated conceptual project. I owned the end-to-end design from flow architecture to high-fidelity screens.</p>\n\n<p><strong>Responsibilities included: </strong> defining the enrollment flow structure, designing all screens across plan selection, who's covered, preliminary information, coverage review, beneficiary setup, enrollment summary, and confirm & submit, integrating a contextual AI assistant layer across the flow, and writing all UX copy.</p>"
         },
         "challenge": {
           "enabled": true,
@@ -594,7 +594,7 @@ const portfolioData = {
         "problem": {
           "enabled": true,
           "title": "",
-          "content": "<p><strong>Plan selection without context.</strong> </p>\n<p> Most flows present a product list with no indication of what's right for the user's situation. A first-time buyer choosing between Individual Whole Life, Critical Illness, and Accident coverage has no frame of reference — and no help deciding.</p>\n\n<p><strong>Beneficiary setup is where flows fall apart.</strong> </p> \n<p> The combination of legal terminology, percentage allocation, and multiple recipient types (individual, estate, trust) creates the highest abandonment risk in any enrollment flow. Most products offer no guidance at this step.</p>\n\n<p><strong>Coverage review screens that feel like receipts, not decisions.</strong> </p> \n<p> The typical quote summary presents a line-item list with no explanation of what the numbers mean. Users either skip past it or get cold feet when they see the total — both outcomes represent a failure of the design.</p>\n\nBellow you can see some image of a legacy platform, which is where we started off.",
+          "content": "<p><strong>Plan selection without context.</strong> </p>\n<p> Most flows present a product list with no indication of what's right for the user's situation. A first-time buyer choosing between Individual Whole Life, Critical Illness, and Accident coverage has no frame of reference and no help deciding.</p>\n\n<p><strong>Beneficiary setup is where flows fall apart.</strong> </p> \n<p> The combination of legal terminology, percentage allocation, and multiple recipient types (individual, estate, trust) creates the highest abandonment risk in any enrollment flow. Most products offer no guidance at this step.</p>\n\n<p><strong>Coverage review screens that feel like receipts, not decisions.</strong> </p> \n<p> The typical quote summary presents a line-item list with no explanation of what the numbers mean. Users either skip past it or get cold feet when they see the total. Both outcomes represent a failure of the design.</p>\n\nBellow you can see some image of a legacy platform, which is where we started off.",
           "images": [
             {
               "url": "img/latest/vantage-life/Beneficiary.png",
@@ -613,14 +613,14 @@ const portfolioData = {
         "strategy": {
           "enabled": true,
           "title": "The strategy was built on three principles:",
-          "content": "<p><strong>Progressive disclosure.</strong> </p> \n<p> Complexity is staged across the flow — simple first, detail on demand. Users see their current selection before being asked to add more. Each screen surfaces only what the current step requires.</p>\n\n<p><strong>Guidance at the moment of decision.</strong> </p> \n<p> Rather than front-loading information or offloading it to a help centre, the Virtual Agent surfaces contextual prompts at each decision point — <em>\"Why choose this plan?\"</em>, <em>\"Who is a good candidate for this coverage?\"</em>, <em>\"What are people similar to you selecting?\"</em> — directly inside the flow.</p>\n\n<p><strong>Honest cost visibility.</strong> </p> \n<p> Per-deduction totals are surfaced throughout the enrollment, not just at the final review. Users who see the cost early are less likely to abandon at confirm & submit.</p>",
+          "content": "<p><strong>Progressive disclosure.</strong> </p> \n<p> Complexity is staged across the flow, simple first, detail on demand. Users see their current selection before being asked to add more. Each screen surfaces only what the current step requires.</p>\n\n<p><strong>Guidance at the moment of decision.</strong> </p> \n<p> Rather than front-loading information or offloading it to a help centre, the Virtual Agent surfaces contextual prompts at each decision point, <em>\"Why choose this plan?\"</em>, <em>\"Who is a good candidate for this coverage?\"</em>, <em>\"What are people similar to you selecting?\"</em> — directly inside the flow.</p>\n\n<p><strong>Honest cost visibility.</strong> </p> \n<p> Per-deduction totals are surfaced throughout the enrollment, not just at the final review. Users who see the cost early are less likely to abandon at confirm & submit.</p>",
           "image": "",
           "images": []
         },
         "solution": {
           "enabled": true,
           "title": "7 Steps enrollment",
-          "content": "<p>A 7-step enrollment flow covering plan selection, who's covered, preliminary information, coverage review, beneficiary setup, enrollment summary, and confirm & submit.</p>\n\n<p><strong>Plan selection</strong> uses a selected/available split — the user's current choice is surfaced first, with complementary options below. Each option includes an AI-powered <em>\"Why choose this plan?\"</em> prompt.</p>\n\n<p><strong>Who's covered</strong> maps each plan to eligible dependents, with edit controls for both dependants and plan selections accessible at the top of the page. Users are never locked in.</p>\n\n<p><strong>Coverage review</strong> presents a line-item breakdown per plan with a sticky total at the bottom of the viewport and a clear fork: save progress or begin the enrollment summary.</p>\n\n<p><strong>Beneficiary setup</strong> uses a <em>\"Same for all plans\" / \"Choose by plan\"</em> toggle to reduce cognitive load for simple cases while preserving full control for complex ones. A real-time allocation tracker provides immediate feedback without requiring manual calculation.</p>\n\n<p>The <strong>Virtual Agent</strong> appears on every screen as a collapsible panel — integrated into the flow, not bolted on as a support widget.</p>",
+          "content": "<p>A 7-step enrollment flow covering plan selection, who's covered, preliminary information, coverage review, beneficiary setup, enrollment summary, and confirm & submit.</p>\n\n<p><strong>Plan selection</strong> uses a selected/available split the user's current choice is surfaced first, with complementary options below. Each option includes an AI-powered <em>\"Why choose this plan?\"</em> prompt.</p>\n\n<p><strong>Who's covered</strong> maps each plan to eligible dependents, with edit controls for both dependants and plan selections accessible at the top of the page. Users are never locked in.</p>\n\n<p><strong>Coverage review</strong> presents a line-item breakdown per plan with a sticky total at the bottom of the viewport and a clear fork: save progress or begin the enrollment summary.</p>\n\n<p><strong>Beneficiary setup</strong> uses a <em>\"Same for all plans\" / \"Choose by plan\"</em> toggle to reduce cognitive load for simple cases while preserving full control for complex ones. A real-time allocation tracker provides immediate feedback without requiring manual calculation.</p>\n\n<p>The <strong>Virtual Agent</strong> appears on every screen as a collapsible panel, integrated into the flow, not bolted on as a support widget.</p>",
           "images": []
         },
         "prototype": {
@@ -631,7 +631,7 @@ const portfolioData = {
         "results": {
           "enabled": true,
           "title": "Results & Impact",
-          "content": "<p><strong>How would I measure success? </p><s/trong>\n<p>This is a conceptual project. No live metrics are available. If implemented, success would be measured against:</p>\n\n<p><strong>Enrollment completion rate</strong> — what percentage of users who start the flow reach confirm & submit.</p>\n\n<p><strong>Step abandonment rate</strong> — which screen drives the most drop-off, and whether the AI guidance reduces it at the beneficiary setup step specifically.</p>\n\n<p><strong>Plan upsell rate</strong> — did users add a second plan when guided through plan selection versus an unguided experience.</p>\n\n<p><strong>Support contact rate</strong> — whether users who complete the guided flow generate fewer post-enrollment support contacts around coverage questions.</p>",
+          "content": "<p><strong>How would I measure success? </p><s/trong>\n<p>This is a conceptual project. No live metrics are available. If implemented, success would be measured against:</p>\n\n<p><strong>Enrollment completion rate:</strong>what percentage of users who start the flow reach confirm & submit.</p>\n\n<p><strong>Step abandonment rate:</strong>which screen drives the most drop-off, and whether the AI guidance reduces it at the beneficiary setup step specifically.</p>\n\n<p><strong>Plan upsell rate:</strong>did users add a second plan when guided through plan selection versus an unguided experience.</p>\n\n<p><strong>Support contact rate: </strong>whether users who complete the guided flow generate fewer post-enrollment support contacts around coverage questions.</p>",
           "quote": "",
           "quoteAuthor": ""
         },

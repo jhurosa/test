@@ -660,7 +660,7 @@ const portfolioData = {
         "results": {
           "enabled": true,
           "title": "Results & Impact",
-          "content": "<p><strong>How would I measure success? </p><s/trong>\n<p>This is a conceptual project. No live metrics are available. If implemented, success would be measured against:</p>\n\n<p><strong>Enrollment completion rate:</strong> what percentage of users who start the flow reach confirm & submit.</p>\n\n<p><strong>Step abandonment rate:</strong> which screen drives the most drop-off, and whether the AI guidance reduces it at the beneficiary setup step specifically.</p>\n\n<p><strong>Plan upsell rate:</strong> did users add a second plan when guided through plan selection versus an unguided experience.</p>\n\n<p><strong>Support contact rate:</strong> whether users who complete the guided flow generate fewer post-enrollment support contacts around coverage questions.</p>",
+          "content": "<p><strong>How would I measure success? </p></strong>\n<p>This is a conceptual project. No live metrics are available. If implemented, success would be measured against:</p>\n\n<p><strong>Enrollment completion rate:</strong> what percentage of users who start the flow reach confirm & submit.</p>\n\n<p><strong>Step abandonment rate:</strong> which screen drives the most drop-off, and whether the AI guidance reduces it at the beneficiary setup step specifically.</p>\n\n<p><strong>Plan upsell rate:</strong> did users add a second plan when guided through plan selection versus an unguided experience.</p>\n\n<p><strong>Support contact rate:</strong> whether users who complete the guided flow generate fewer post-enrollment support contacts around coverage questions.</p>",
           "quote": "",
           "quoteAuthor": ""
         },

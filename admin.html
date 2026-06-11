@@ -299,7 +299,7 @@
           </div>
           <div class="card">
             <div class="card-title">Admin Password</div>
-            <p class="text-muted" style="margin-bottom:1rem">Current admin password: <strong>jrosaux2026</strong>. To change it, generate a new hash and replace <code>ADMIN_HASH</code> in admin.html.</p>
+            <p class="text-muted" style="margin-bottom:1rem">Current admin password: <strong>jrosaux2026</strong>. To change it, generate a new hash and replace <code>3ef3b5b7012aa1506a18f9fccd94046a7277b8692844e5203c0f04977f1176da</code> in admin.html.</p>
             <div class="grid2">
               <div class="fg"><label>New password</label><input type="text" id="admin-plain" placeholder="New password" /></div>
               <div class="fg"><label>New hash (copy to admin.html)</label><input type="text" id="admin-hash-out" readonly placeholder="Hash appears here" /></div>
@@ -320,7 +320,7 @@
 // ── AUTH ──────────────────────────────────────────────────────────────────────
 // Default password: jrosaux2026
 // To change: generate new SHA-256 hash and replace ADMIN_HASH below
-const ADMIN_HASH = 'PLACEHOLDER_HASH';
+const 3ef3b5b7012aa1506a18f9fccd94046a7277b8692844e5203c0f04977f1176da = 'PLACEHOLDER_HASH';
 // ^ We'll check against both the hash and the default password directly
 
 async function sha256(s) {
@@ -331,7 +331,7 @@ async function sha256(s) {
 async function doLogin() {
   const pw = document.getElementById('lpw').value;
   const hash = await sha256(pw);
-  const ok = pw === 'jrosaux2026' || hash === ADMIN_HASH;
+  const ok = pw === 'jrosaux2026' || hash === 3ef3b5b7012aa1506a18f9fccd94046a7277b8692844e5203c0f04977f1176da;
   if (ok) {
     document.getElementById('login').style.display = 'none';
     document.getElementById('app').style.display = 'block';
@@ -751,7 +751,7 @@ async function genAdminHash() {
   if (!pw) { toast('Enter a password.','err'); return; }
   const hash = await sha256(pw);
   document.getElementById('admin-hash-out').value = hash;
-  toast('Copy this hash and replace ADMIN_HASH in admin.html.', 'ok');
+  toast('Copy this hash and replace 3ef3b5b7012aa1506a18f9fccd94046a7277b8692844e5203c0f04977f1176da in admin.html.', 'ok');
 }
 
 // ── DOWNLOAD ──────────────────────────────────────────────────────────────────────

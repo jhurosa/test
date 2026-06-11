@@ -122,7 +122,7 @@ const portfolioData = {
         "metric": "",
         "image": "img/latest/cover.jpeg",
         "link": "project.html?id=proj-1780697392365",
-        "locked": true
+        "locked": false
       },
       {
         "id": "proj-1780826710054",
@@ -132,7 +132,7 @@ const portfolioData = {
         "metric": "- 40% reduction in design time",
         "image": "img/latest/DS/ds-card-cover.png",
         "link": "project.html?id=proj-1780826710054",
-        "locked": true
+        "locked": false
       },
       {
         "id": "proj-1781007763207",
@@ -142,7 +142,7 @@ const portfolioData = {
         "metric": "",
         "image": "img/latest/vantage-life/vatage-life-card.png",
         "link": "project.html?id=proj-1781007763207",
-        "locked": true
+        "locked": false
       }
     ]
   },
@@ -680,5 +680,5 @@ const portfolioData = {
       "PT"
     ]
   },
-  "gdprPasswordHash": "dd842fa7427a1b56ebd593bac3b048c4fd9999c03bbc5f2bf07e21cb9381212b"
+  "ndaPasswordHash": "dd842fa7427a1b56ebd593bac3b048c4fd9999c03bbc5f2bf07e21cb9381212b"
 };

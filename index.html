@@ -138,9 +138,7 @@
       document.getElementById('projects').innerHTML = `
         <div class="divider"><div class="divider-line"></div><div class="divider-label">${ind.title}</div><div class="divider-line"></div></div>
         ${ndaHtml}
-        <div class="project-grid ${indCols}">${ind.projects.map(renderCard).join('')}</div>
-        <div class="divider"><div class="divider-line"></div><div class="divider-label">${aca.title}</div><div class="divider-line"></div></div>
-        <div class="project-grid ${acaCols}">${aca.projects.map(renderCard).join('')}</div>`;
+        <div class="project-grid ${indCols}">${ind.projects.map(renderCard).join('')}</div>`;
     }
 
     function renderFooter() {
